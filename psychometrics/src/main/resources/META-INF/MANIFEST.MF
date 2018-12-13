@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.itemanalysis.psychometrics.irt.estimation.MMLEsimulati
+ on
+

@@ -13,7 +13,7 @@ import lombok.Data;
  * Created by suryadevarap on 12/21/18.
  */
 @Data
-public class MLEAndSEStudents extends AbstractView {
+public class TestStudents extends AbstractView {
 
   private String studentName;
 

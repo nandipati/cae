@@ -5,8 +5,7 @@ import com.google.gson.GsonBuilder;
 
 import com.rsi.adaptive.api.view.InputResponse;
 import com.rsi.adaptive.api.view.ItemResponses;
-import com.rsi.adaptive.api.view.MLEAndSEResponseView;
-import com.rsi.adaptive.api.view.MLEAndSEStudents;
+import com.rsi.adaptive.api.view.TestStudents;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -16,7 +15,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
-import org.springframework.util.CollectionUtils;
 
 /**
  * Created by suryadevarap on 12/21/18.
@@ -27,11 +25,11 @@ public class InputFileWrapper {
   private static byte[][] responseVector = null;
 
   private InputResponse inputResponse = new InputResponse();
-  private List<MLEAndSEStudents> mleAndSEStudentsList = new ArrayList<>();
+  private List<TestStudents> testStudentsList = new ArrayList<>();
 
   private ItemResponses itemResponses = new ItemResponses();;
   private List<ItemResponses> itemResponsesList = new ArrayList<>();
-  private MLEAndSEStudents mleAndSEStudents;
+  private TestStudents testStudents;
 
 
 
@@ -48,7 +46,7 @@ public class InputFileWrapper {
 
         s = line.split(",");
         for(int j=0;j<s.length;j++){
-          mleAndSEStudents = new MLEAndSEStudents();
+          testStudents = new TestStudents();
           String name = "Student "+(row+1);
 
           responseVector[row][j] = Byte.parseByte(s[j]);
@@ -57,7 +55,7 @@ public class InputFileWrapper {
           itemResponses.setItemResponse(responseVector[row][j]);
 
 
-          mleAndSEStudents.setStudentName(name);
+          testStudents.setStudentName(name);
 
           itemResponsesList.add(itemResponses);
           itemResponses = new ItemResponses();
@@ -65,9 +63,9 @@ public class InputFileWrapper {
         }
         row++;
 
-        mleAndSEStudents.setItemResponsesList(itemResponsesList);
+        testStudents.setItemResponsesList(itemResponsesList);
         itemResponsesList = new ArrayList<>();
-        mleAndSEStudentsList.add(mleAndSEStudents);
+        testStudentsList.add(testStudents);
 
 
       }
@@ -76,7 +74,7 @@ public class InputFileWrapper {
       ex.printStackTrace();
     }
 
-    inputResponse.setStudents(mleAndSEStudentsList);
+    inputResponse.setStudents(testStudentsList);
     return inputResponse;
 
 
@@ -93,9 +91,9 @@ public class InputFileWrapper {
     int itemResponse;
     responseVector = new byte[20][40];
     int row=0;
-    mleAndSEStudentsList = response.getStudents();
+    testStudentsList = response.getStudents();
 
-    for (MLEAndSEStudents students: mleAndSEStudentsList){
+    for (TestStudents students: testStudentsList){
       int j=0;
       itemResponsesList =  students.getItemResponsesList();
 

@@ -10,7 +10,7 @@ import lombok.Data;
 @Data
 public class InputResponse {
 
-  private List<MLEAndSEStudents> students;
+  private List<TestStudents> students;
 
 
 }

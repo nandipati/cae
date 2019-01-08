@@ -6,16 +6,13 @@ package com.rsi.adaptive.api.service;
 //import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
 // import com.rsi.adaptive.api.service.enums.ItemParameters;
 import com.rsi.adaptive.api.mapper.DomainMapper;
-import com.rsi.adaptive.api.view.MLEAndSEResponseView;
-import com.rsi.adaptive.api.view.MLEAndSEStudents;
+import com.rsi.adaptive.api.view.TestStudentsResponseView;
+import com.rsi.adaptive.api.view.TestStudents;
 import com.rsi.adaptive.calc.service.MLEAndSECalcService;
-import com.rsi.adaptive.calc.service.MLEAndSEWrapper;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,18 +28,18 @@ public class MLEServiceImpl implements MLEService {
   private DomainMapper mapper;
 
   @Override
-  public MLEAndSEResponseView getMLEAndSE(byte[][] responseVector) {
+  public TestStudentsResponseView getMLEAndSE(byte[][] responseVector) {
 
     long startTime = System.nanoTime();
 
-    MLEAndSEResponseView mleAndSEResponseView = new MLEAndSEResponseView();
-    List<MLEAndSEStudents> mleAndSEStudentsList;
+    TestStudentsResponseView testStudentsResponseView = new TestStudentsResponseView();
+    List<TestStudents> testStudentsList;
 
 
-    mleAndSEStudentsList = mapper.convert(mleAndSECalcService.calculateMLEAndSEForAll(responseVector));
+    testStudentsList = mapper.convert(mleAndSECalcService.calculateMLEAndSEForAll(responseVector));
 
 
-    mleAndSEResponseView.setMleAndSEStudents(mleAndSEStudentsList);
+    testStudentsResponseView.setTestStudents(testStudentsList);
 
     long endTime   = System.nanoTime();
     long totalTime = endTime - startTime;
@@ -52,7 +49,7 @@ public class MLEServiceImpl implements MLEService {
     System.out.println("totalTime in seconds from service  : "+ totalTimeInSec);
 
 
-    return mleAndSEResponseView;
+    return testStudentsResponseView;
   }
 
 

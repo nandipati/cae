@@ -1,6 +1,6 @@
 package com.rsi.adaptive.api.mapper;
 
-import com.rsi.adaptive.api.view.MLEAndSEStudents;
+import com.rsi.adaptive.api.view.TestStudents;
 import com.rsi.adaptive.calc.domain.MLEAndSEStudentsDomain;
 
 import org.springframework.context.annotation.Bean;
@@ -16,7 +16,7 @@ public class DomainMapperConfiguration {
   public DomainMapper domainMapper(){
     GenericDomainMapperImpl mapper = new GenericDomainMapperImpl();
 
-    mapper.addClassMapping( MLEAndSEStudentsDomain.class,MLEAndSEStudents.class);
+    mapper.addClassMapping( MLEAndSEStudentsDomain.class,TestStudents.class);
 
     return mapper;
   }

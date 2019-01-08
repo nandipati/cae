@@ -1,4 +1,4 @@
-package com.rsi.adaptive.api.service.enums;
+package com.rsi.adaptive.calc.enums;
 
 /**
  * Created by suryadevarap on 12/21/18.

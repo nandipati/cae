@@ -1,15 +1,19 @@
 package com.rsi.adaptive.api.service;
 
-import com.itemanalysis.psychometrics.data.VariableName;
-import com.itemanalysis.psychometrics.irt.estimation.IrtExaminee;
-import com.itemanalysis.psychometrics.irt.model.Irm3PL;
-import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
-import com.rsi.adaptive.api.service.enums.ItemParameters;
-import com.rsi.adaptive.api.view.ItemResponses;
+//import com.itemanalysis.psychometrics.data.VariableName;
+//import com.itemanalysis.psychometrics.irt.estimation.IrtExaminee;
+//import com.itemanalysis.psychometrics.irt.model.Irm3PL;
+//import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
+// import com.rsi.adaptive.api.service.enums.ItemParameters;
+import com.rsi.adaptive.api.mapper.DomainMapper;
 import com.rsi.adaptive.api.view.MLEAndSEResponseView;
 import com.rsi.adaptive.api.view.MLEAndSEStudents;
+import com.rsi.adaptive.calc.service.MLEAndSECalcService;
+import com.rsi.adaptive.calc.service.MLEAndSEWrapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,49 +24,32 @@ import java.util.List;
 @Component
 public class MLEServiceImpl implements MLEService {
 
+  @Autowired
+  private MLEAndSECalcService mleAndSECalcService;
+
+  @Autowired
+  private DomainMapper mapper;
+
   @Override
   public MLEAndSEResponseView getMLEAndSE(byte[][] responseVector) {
 
+    long startTime = System.nanoTime();
+
     MLEAndSEResponseView mleAndSEResponseView = new MLEAndSEResponseView();
-    List<MLEAndSEStudents> mleAndSEStudentsList = new ArrayList<>();
-    MLEAndSEStudents mleAndSEStudents;
-
-    int n = ItemParameters.DISCRIMINATOR.getParam().length;
-    ItemParameters disc = ItemParameters.DISCRIMINATOR;
-    ItemParameters diff = ItemParameters.DIFFICULTY;
-    int nPeople = responseVector.length;
-
-    ItemResponseModel[] irmArray = new ItemResponseModel[n];
-
-    VariableName iName;
-    for(int i=0;i<n;i++){
-      String name = "V"+i;
-      iName = new VariableName(name);
-
-      irmArray[i] = new Irm3PL(disc.getParam()[i], diff.getParam()[i],  1.7);
-      irmArray[i].setName(iName);
-    }
+    List<MLEAndSEStudents> mleAndSEStudentsList;
 
 
-    IrtExaminee iVec = new IrtExaminee(irmArray);
+    mleAndSEStudentsList = mapper.convert(mleAndSECalcService.calculateMLEAndSEForAll(responseVector));
 
-    double mle;
-    double se ;
-    for(int j=0;j<nPeople;j++) {
-      mleAndSEStudents = new MLEAndSEStudents();
 
-      iVec.setResponseVector(responseVector[j]);
+    mleAndSEResponseView.setMleAndSEStudents(mleAndSEStudentsList);
 
-      mle = iVec.maximumLikelihoodEstimate(-6.0, 6.0);
-      se = iVec.mleStandardErrorAt(mle);
-      mleAndSEStudents.setStudentName("Student "+(j+1));
-      mleAndSEStudents.setMLE(mle);
-      mleAndSEStudents.setSE(se);
-      mleAndSEStudentsList.add(mleAndSEStudents);
-    }
+    long endTime   = System.nanoTime();
+    long totalTime = endTime - startTime;
 
-     mleAndSEResponseView.setMleAndSEStudents(mleAndSEStudentsList);
-
+    System.out.println("totalTime in nanoseconds from service : "+ totalTime);
+    double totalTimeInSec =(double)totalTime / 1_000_000_000.0;
+    System.out.println("totalTime in seconds from service  : "+ totalTimeInSec);
 
 
     return mleAndSEResponseView;

@@ -10,7 +10,7 @@ import lombok.Data;
  * Created by suryadevarap on 12/21/18.
  */
 @Data
-public class MLEAndSEResponseView {
+public class MLEAndSEResponseView extends AbstractView {
 
   @JsonProperty("students")
   private List<MLEAndSEStudents> mleAndSEStudents;

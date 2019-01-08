@@ -36,6 +36,8 @@ public class CAEController extends AbstractBaseController{
       @PathVariable(Constants.VERSION_PARAM_NAME) String versionNbr,
       @RequestParam boolean testMLE)
   {
+    long startTime = System.nanoTime();
+    MLEAndSEResponseView view = new MLEAndSEResponseView();
     checkForVersion(versionNbr, AdaptiveEndpoint.ADAPTIVE_MLE);
     InputFileWrapper wrapper = new InputFileWrapper();
     InputResponse inputResponse= new InputResponse();
@@ -45,7 +47,17 @@ public class CAEController extends AbstractBaseController{
       inputResponse = wrapper.readTextFile();
     }
 
-    return service.getMLEAndSE(wrapper.buildResponseVector(inputResponse));
+    view = service.getMLEAndSE(wrapper.buildResponseVector(inputResponse));
+
+    long endTime   = System.nanoTime();
+    long totalTime = endTime - startTime;
+    System.out.println("totalTime in nanoseconds from controller : "+ totalTime);
+    double totalTimeInSec =(double)totalTime / 1_000_000_000.0;
+    System.out.println("totalTime in seconds from controller  : "+ totalTimeInSec);
+
+//    return service.getMLEAndSE(wrapper.buildResponseVector(inputResponse));
+    return view;
+
   }
 
 

@@ -12,13 +12,14 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.4.3.RELEASE</version>
+        <version>2.1.1.RELEASE</version>
         <relativePath />
     </parent>
 
     <modules>
         <module>psychometrics</module>
         <module>caeAPI</module>
+        <module>caeCALC</module>
     </modules>
 
     <properties>
@@ -55,12 +56,28 @@
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+              <executions>
+                <execution>
+                  <id>repackage</id>
+                  <goals>
+                    <goal>repackage</goal>
+                  </goals>
+                  <configuration>
+                    <classifier>exec</classifier>
+                  </configuration>
+                </execution>
+              </executions>
             </plugin>
         </plugins>
     </build>

@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
+import java.util.UUID;
 
 import lombok.Data;
 
@@ -12,7 +13,7 @@ import lombok.Data;
  * Created by suryadevarap on 12/21/18.
  */
 @Data
-public class MLEAndSEStudents {
+public class MLEAndSEStudents extends AbstractView {
 
   private String studentName;
 

@@ -48,8 +48,8 @@ public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
     IrtExaminee  iVec = new IrtExaminee(irmArray);
 
     for(int j=0;j<nPeople;j++) {
-      double mle=0.0;
-      double se=0.0 ;
+      double mle;
+      double se ;
 
       mleAndSEStudents = new MLEAndSEStudentsDomain();
 

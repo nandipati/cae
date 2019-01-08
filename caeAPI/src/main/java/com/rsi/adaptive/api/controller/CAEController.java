@@ -31,10 +31,12 @@ public class CAEController extends AbstractBaseController{
   @Autowired
   private MLEService service;
 
-  @RequestMapping(value = "/MLE", method = RequestMethod.POST, produces = Constants.JSON, consumes = Constants.JSON)
+  /* General test case restCall for a given responseVector */
+  @RequestMapping(value = "/testResponse", method = RequestMethod.POST, produces = Constants.JSON,
+                  consumes = Constants.JSON)
   public MLEAndSEResponseView showResponse(
       @PathVariable(Constants.VERSION_PARAM_NAME) String versionNbr,
-      @RequestParam boolean testMLE)
+      @RequestParam boolean test)
   {
     long startTime = System.nanoTime();
     MLEAndSEResponseView view = new MLEAndSEResponseView();
@@ -43,7 +45,7 @@ public class CAEController extends AbstractBaseController{
     InputResponse inputResponse= new InputResponse();
 
 
-    if(testMLE) {
+    if(test) {
       inputResponse = wrapper.readTextFile();
     }
 
@@ -55,7 +57,6 @@ public class CAEController extends AbstractBaseController{
     double totalTimeInSec =(double)totalTime / 1_000_000_000.0;
     System.out.println("totalTime in seconds from controller  : "+ totalTimeInSec);
 
-//    return service.getMLEAndSE(wrapper.buildResponseVector(inputResponse));
     return view;
 
   }

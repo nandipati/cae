@@ -1,15 +1,12 @@
 package com.rsi.adaptive.calc.service;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.itemanalysis.psychometrics.data.VariableName;
 import com.itemanalysis.psychometrics.irt.estimation.IrtExaminee;
 import com.itemanalysis.psychometrics.irt.model.Irm3PL;
 import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
-import com.rsi.adaptive.calc.domain.MLEAndSEStudentsDomain;
+import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 import com.rsi.adaptive.calc.enums.ItemParameters;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -23,10 +20,10 @@ public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
 
 
   @Override
-  public List<MLEAndSEStudentsDomain> calculateMLEAndSEForAll(byte[][] responseVector) {
+  public List<TestStudentsDomain> calculateMLEAndSEForAll(byte[][] responseVector) {
 
-    List<MLEAndSEStudentsDomain> mleAndSEStudentsList = new ArrayList<>();
-    MLEAndSEStudentsDomain mleAndSEStudents;
+    List<TestStudentsDomain> mleAndSEStudentsList = new ArrayList<>();
+    TestStudentsDomain testStudentsDomain;
 
     int numberOfItems = ItemParameters.DISCRIMINATOR.getParam().length;
     ItemParameters disc = ItemParameters.DISCRIMINATOR;
@@ -51,16 +48,16 @@ public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
       double mle;
       double se ;
 
-      mleAndSEStudents = new MLEAndSEStudentsDomain();
+      testStudentsDomain = new TestStudentsDomain();
 
       iVec.setResponseVector(responseVector[j]);
 
       mle = iVec.maximumLikelihoodEstimate(-6.0, 6.0);
       se = iVec.mleStandardErrorAt(mle);
-      mleAndSEStudents.setStudentName("Student "+(j+1));
-      mleAndSEStudents.setMLE(mle);
-      mleAndSEStudents.setSE(se);
-      mleAndSEStudentsList.add(mleAndSEStudents);
+      testStudentsDomain.setStudentName("Student "+(j+1));
+      testStudentsDomain.setMLE(mle);
+      testStudentsDomain.setSE(se);
+      mleAndSEStudentsList.add(testStudentsDomain);
     }
 
     return mleAndSEStudentsList;

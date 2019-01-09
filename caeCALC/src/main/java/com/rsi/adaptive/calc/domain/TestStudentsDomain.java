@@ -10,7 +10,7 @@ import lombok.Data;
  * Created by suryadevarap on 1/7/19.
  */
 @Data
-public class MLEAndSEStudentsDomain extends AbstractDomain {
+public class TestStudentsDomain extends AbstractDomain {
 
   private String studentName;
 

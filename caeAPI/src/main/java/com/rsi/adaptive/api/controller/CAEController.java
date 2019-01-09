@@ -2,7 +2,7 @@ package com.rsi.adaptive.api.controller;
 
 import com.rsi.adaptive.api.controller.enums.AdaptiveEndpoint;
 import com.rsi.adaptive.api.controller.wrapper.InputFileWrapper;
-import com.rsi.adaptive.api.service.MLEService;
+import com.rsi.adaptive.api.service.MLEAndSEService;
 import com.rsi.adaptive.api.utils.Constants;
 import com.rsi.adaptive.api.view.InputResponse;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;
@@ -22,9 +22,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class CAEController extends AbstractBaseController{
 
   @Autowired
-  private MLEService service;
+  private MLEAndSEService service;
 
-  /* General test case restCall for a given responseVector */
+  /* General test-case restCall for a given responseVector */
   @RequestMapping(value = "/testResponse", method = RequestMethod.POST, produces = Constants.JSON,
                   consumes = Constants.JSON)
   public TestStudentsResponseView showResponse(
@@ -53,6 +53,15 @@ public class CAEController extends AbstractBaseController{
     return view;
 
   }
+
+
+
+  public String startQuiz(){
+
+
+    return "quiz" ;
+  }
+
 
 
 }

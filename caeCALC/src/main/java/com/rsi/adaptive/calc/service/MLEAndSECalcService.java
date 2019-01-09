@@ -1,6 +1,6 @@
 package com.rsi.adaptive.calc.service;
 
-import com.rsi.adaptive.calc.domain.MLEAndSEStudentsDomain;
+import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 
 import java.util.List;
 
@@ -9,5 +9,5 @@ import java.util.List;
  */
 public interface MLEAndSECalcService {
 
-   List<MLEAndSEStudentsDomain> calculateMLEAndSEForAll(byte[][] responseVector);
+   List<TestStudentsDomain> calculateMLEAndSEForAll(byte[][] responseVector);
 }

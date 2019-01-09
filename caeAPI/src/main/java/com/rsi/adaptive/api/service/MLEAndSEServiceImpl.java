@@ -19,7 +19,7 @@ import java.util.List;
  * Created by suryadevarap on 12/21/18.
  */
 @Component
-public class MLEServiceImpl implements MLEService {
+public class MLEAndSEServiceImpl implements MLEAndSEService {
 
   @Autowired
   private MLEAndSECalcService mleAndSECalcService;

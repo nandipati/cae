@@ -8,4 +8,5 @@ import com.rsi.adaptive.api.view.TestStudentsResponseView;
 public interface MLEAndSEService {
 
   TestStudentsResponseView getMLEAndSE(byte[][] responseVector);
+
 }

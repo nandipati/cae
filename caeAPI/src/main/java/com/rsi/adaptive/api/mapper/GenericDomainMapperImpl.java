@@ -21,82 +21,82 @@ public class GenericDomainMapperImpl  implements DomainMapper {
   private Map<Class<? extends AbstractView>, Class<? extends AbstractDomain>> viewToDomainMapping = new HashMap<>();
 
   @Override
-  public <V extends AbstractView, E extends AbstractDomain> V convert(E entity) {
+  public <V extends AbstractView, D extends AbstractDomain> V convert(D domain) {
 
-    Class<? extends AbstractDomain> clazz = entity.getClass();
+    Class<? extends AbstractDomain> clazz = domain.getClass();
     Class<V> viewClazz = findViewClass(clazz);
 
-    return createViewInstance(viewClazz, entity);
+    return createViewInstance(viewClazz, domain);
   }
 
   @Override
-  public <V extends AbstractView, E extends AbstractDomain> List<V> convert(List<E> entities) {
+  public <V extends AbstractView, D extends AbstractDomain> List<V> convert(List<D> domains) {
 
-    if (CollectionUtils.isEmpty(entities)) {
+    if (CollectionUtils.isEmpty(domains)) {
       return new ArrayList<>();
     }
 
-    Class<? extends AbstractDomain> clazz = entities.get(0).getClass();
+    Class<? extends AbstractDomain> clazz = domains.get(0).getClass();
     Class<V> viewClazz = findViewClass(clazz);
 
-    return entities.stream().map(e -> createViewInstance(viewClazz, e)).collect(Collectors.toList());
+    return domains.stream().map(e -> createViewInstance(viewClazz, e)).collect(Collectors.toList());
   }
 
   @Override
-  public <V extends AbstractView, E extends AbstractDomain> E convert(V view) {
+  public <V extends AbstractView, D extends AbstractDomain> D convert(V view) {
 
     Class<? extends AbstractView> clazz = view.getClass();
-    Class<E> entityClazz = findEntityClass(clazz);
+    Class<D> domainClazz = finddomainClass(clazz);
 
-    return createEntityInstance(entityClazz, view);
+    return createDomainInstance(domainClazz, view);
   }
 
-  public void addClassMapping(Class<? extends AbstractDomain> entityClazz, Class<? extends AbstractView> viewClazz) {
-    domainToViewMapping.put(entityClazz, viewClazz);
-    viewToDomainMapping.put(viewClazz, entityClazz);
+  public void addClassMapping(Class<? extends AbstractDomain> domainClazz, Class<? extends AbstractView> viewClazz) {
+    domainToViewMapping.put(domainClazz, viewClazz);
+    viewToDomainMapping.put(viewClazz, domainClazz);
   }
 
   @SuppressWarnings("unchecked")
-  private <V extends AbstractView, E extends AbstractDomain> Class<V> findViewClass(Class<E> entityClazz) {
+  private <V extends AbstractView, D extends AbstractDomain> Class<V> findViewClass(Class<D> domainClazz) {
 
-    Class<V> viewClazz = (Class<V>) domainToViewMapping.get(entityClazz);
+    Class<V> viewClazz = (Class<V>) domainToViewMapping.get(domainClazz);
 
     if (viewClazz == null) {
-      throw new IllegalArgumentException("no mapping configuration was found for class " + entityClazz);
+      throw new IllegalArgumentException("no mapping configuration was found for class " + domainClazz);
     }
     return viewClazz;
   }
 
   @SuppressWarnings("unchecked")
-  private <V extends AbstractView, E extends AbstractDomain> Class<E> findEntityClass(Class<V> viewClazz) {
+  private <V extends AbstractView, D extends AbstractDomain> Class<D> finddomainClass(Class<V> viewClazz) {
 
-    Class<E> entityClazz = (Class<E>) viewToDomainMapping.get(viewClazz);
+    Class<D> domainClazz = (Class<D>) viewToDomainMapping.get(viewClazz);
 
-    if (entityClazz == null) {
+    if (domainClazz == null) {
       throw new IllegalArgumentException("no mapping configuration was found for class " + viewClazz);
     }
-    return entityClazz;
+    return domainClazz;
   }
 
   @Override
-  public <V extends AbstractView, E extends AbstractDomain> V convert(E entity, Class<V> targetClazz) {
-    return createViewInstance(targetClazz, entity);
+  public <V extends AbstractView, D extends AbstractDomain> V convert(D domain, Class<V> targetClazz) {
+    return createViewInstance(targetClazz, domain);
   }
 
   @Override
-  public <V extends AbstractView, E extends AbstractDomain> List<V> convert(List<E> entities, Class<V> targetClazz) {
-    return entities.stream().map(e -> createViewInstance(targetClazz, e)).collect(Collectors.toList());
+  public <V extends AbstractView, D extends AbstractDomain> List<V> convert(List<D> domains, Class<V> targetClazz) {
+    return domains.stream().map(e -> createViewInstance(targetClazz, e)).collect(Collectors.toList());
   }
 
-  private <V extends AbstractView, E extends AbstractDomain> V createViewInstance(Class<V> viewClazz, E entity) {
+  private <V extends AbstractView, D extends AbstractDomain> V createViewInstance(Class<V> viewClazz, D domain) {
     V view = BeanUtils.instantiate(viewClazz);
-    BeanUtils.copyProperties(entity, view);
+    BeanUtils.copyProperties(domain, view);
     return view;
   }
 
-  private <V extends AbstractView, E extends AbstractDomain> E createEntityInstance(Class<E> entityClazz, V view) {
-    E entity = BeanUtils.instantiate(entityClazz);
-    BeanUtils.copyProperties(view, entity);
-    return entity;
+  private <V extends AbstractView, D extends AbstractDomain> D createDomainInstance(Class<D> domainClazz, V view) {
+    D domain = BeanUtils.instantiate(domainClazz);
+    BeanUtils.copyProperties(view, domain);
+    return domain;
   }
 }

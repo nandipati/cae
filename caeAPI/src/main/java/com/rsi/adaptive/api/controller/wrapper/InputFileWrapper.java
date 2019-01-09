@@ -54,7 +54,6 @@ public class InputFileWrapper {
           itemResponses.setItemNumber(j+1);
           itemResponses.setItemResponse(responseVector[row][j]);
 
-
           testStudents.setStudentName(name);
 
           itemResponsesList.add(itemResponses);
@@ -76,7 +75,6 @@ public class InputFileWrapper {
 
     inputResponse.setStudents(testStudentsList);
     return inputResponse;
-
 
   }
 

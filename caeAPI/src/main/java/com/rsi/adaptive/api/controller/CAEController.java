@@ -37,7 +37,6 @@ public class CAEController extends AbstractBaseController{
     InputFileWrapper wrapper = new InputFileWrapper();
     InputResponse inputResponse= new InputResponse();
 
-
     if(test) {
       inputResponse = wrapper.readTextFile();
     }
@@ -53,15 +52,5 @@ public class CAEController extends AbstractBaseController{
     return view;
 
   }
-
-
-
-  public String startQuiz(){
-
-
-    return "quiz" ;
-  }
-
-
 
 }

@@ -1,10 +1,6 @@
 package com.rsi.adaptive.api.service;
 
-//import com.itemanalysis.psychometrics.data.VariableName;
-//import com.itemanalysis.psychometrics.irt.estimation.IrtExaminee;
-//import com.itemanalysis.psychometrics.irt.model.Irm3PL;
-//import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
-// import com.rsi.adaptive.api.service.enums.ItemParameters;
+
 import com.rsi.adaptive.api.mapper.DomainMapper;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;
 import com.rsi.adaptive.api.view.TestStudents;
@@ -35,9 +31,7 @@ public class MLEAndSEServiceImpl implements MLEAndSEService {
     TestStudentsResponseView testStudentsResponseView = new TestStudentsResponseView();
     List<TestStudents> testStudentsList;
 
-
     testStudentsList = mapper.convert(mleAndSECalcService.calculateMLEAndSEForAll(responseVector));
-
 
     testStudentsResponseView.setTestStudents(testStudentsList);
 
@@ -47,7 +41,6 @@ public class MLEAndSEServiceImpl implements MLEAndSEService {
     System.out.println("totalTime in nanoseconds from service : "+ totalTime);
     double totalTimeInSec =(double)totalTime / 1_000_000_000.0;
     System.out.println("totalTime in seconds from service  : "+ totalTimeInSec);
-
 
     return testStudentsResponseView;
   }

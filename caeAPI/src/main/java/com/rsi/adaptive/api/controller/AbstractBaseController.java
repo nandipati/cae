@@ -14,7 +14,6 @@ import javax.persistence.EntityNotFoundException;
  */
 public abstract class AbstractBaseController {
 
-
   @ResponseStatus(HttpStatus.BAD_REQUEST)
   @ExceptionHandler(
       value = {

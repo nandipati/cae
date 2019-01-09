@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface DomainMapper {
 
-  <V extends AbstractView, E extends AbstractDomain> V convert(E entity);
+  <V extends AbstractView, E extends AbstractDomain> V convert(E domain);
 
-  <V extends AbstractView, E extends AbstractDomain> List<V> convert(List<E> entities);
+  <V extends AbstractView, E extends AbstractDomain> List<V> convert(List<E> domains);
 
   <V extends AbstractView, E extends AbstractDomain> E convert(V view);
 
-  <V extends AbstractView, E extends AbstractDomain> V convert(E entity, Class<V> targetClazz);
+  <V extends AbstractView, E extends AbstractDomain> V convert(E domain, Class<V> targetClazz);
 
-  <V extends AbstractView, E extends AbstractDomain> List<V> convert(List<E> entities, Class<V> targetClazz);
+  <V extends AbstractView, E extends AbstractDomain> List<V> convert(List<E> domians, Class<V> targetClazz);
 
 
 }

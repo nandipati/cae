@@ -1,0 +1,39 @@
+package com.rsi.adaptive.api.controller.enums;
+
+import com.rsi.adaptive.api.view.config.JsonViews;
+
+import java.util.Arrays;
+
+/**
+ * Created by suryadevarap on 12/20/18.
+ */
+public enum SupportedVersion {
+
+  V1("1", JsonViews.V1.class);
+
+  private final String version;
+  private final Class<?> viewClass;
+
+  SupportedVersion(String version, Class<?> viewClass) {
+    this.version = version;
+    this.viewClass = viewClass;
+  }
+
+  public String getVersion() {
+    return version;
+  }
+
+  public Class<?> getViewClass() {
+    return viewClass;
+  }
+
+  public static SupportedVersion fromString(String version) {
+    return Arrays.stream(SupportedVersion.values()).filter(v -> v.version.equalsIgnoreCase(version)).findFirst()
+        .orElseThrow(() -> new IllegalArgumentException("no SupportedVersion for " + version));
+  }
+
+  public static SupportedVersion fromStringSafe(String version) {
+    return Arrays.stream(SupportedVersion.values()).filter(v -> v.version.equalsIgnoreCase(version)).findFirst().orElseGet(() -> null);
+  }
+
+}

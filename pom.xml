@@ -8,6 +8,24 @@
     <artifactId>cae</artifactId>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
+    <distributionManagement>
+        <snapshotRepository>
+            <id>nexus</id>
+            <name>maven-snapshots</name>
+            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>nexus</id>
+            <name>maven-releases</name>
+            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+    <repositories>
+        <repository>
+            <id>maven-release</id>
+            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-releases/</url>
+        </repository>
+    </repositories>
 
     <parent>
         <groupId>org.springframework.boot</groupId>

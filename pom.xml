@@ -23,7 +23,7 @@
     <repositories>
         <repository>
             <id>maven-release</id>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-releases/</url>
+            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-public/</url>
         </repository>
     </repositories>
 

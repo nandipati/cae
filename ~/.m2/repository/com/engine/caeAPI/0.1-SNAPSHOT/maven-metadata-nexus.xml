@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata modelVersion="1.1.0">
+  <groupId>com.engine</groupId>
+  <artifactId>caeAPI</artifactId>
+  <version>0.1-SNAPSHOT</version>
+  <versioning>
+    <snapshot>
+      <timestamp>20190115.182432</timestamp>
+      <buildNumber>2</buildNumber>
+    </snapshot>
+    <lastUpdated>20190115182432</lastUpdated>
+    <snapshotVersions>
+      <snapshotVersion>
+        <extension>jar</extension>
+        <value>0.1-20190115.182432-2</value>
+        <updated>20190115182432</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <extension>pom</extension>
+        <value>0.1-20190115.182432-2</value>
+        <updated>20190115182432</updated>
+      </snapshotVersion>
+      <snapshotVersion>
+        <classifier>exec</classifier>
+        <extension>jar</extension>
+        <value>0.1-20190115.182432-2</value>
+        <updated>20190115182432</updated>
+      </snapshotVersion>
+    </snapshotVersions>
+  </versioning>
+</metadata>

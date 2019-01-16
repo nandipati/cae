@@ -1,6 +1,10 @@
 package com.rsi.adaptive.api.mapper;
 
+import com.rsi.adaptive.api.view.CurrentItems;
+import com.rsi.adaptive.api.view.NextItem;
 import com.rsi.adaptive.api.view.TestStudents;
+import com.rsi.adaptive.calc.domain.CurrentItemsDomain;
+import com.rsi.adaptive.calc.domain.NextItemDomain;
 import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 
 import org.springframework.context.annotation.Bean;
@@ -17,6 +21,8 @@ public class DomainMapperConfiguration {
     GenericDomainMapperImpl mapper = new GenericDomainMapperImpl();
 
     mapper.addClassMapping( TestStudentsDomain.class,TestStudents.class);
+    mapper.addClassMapping(CurrentItemsDomain.class,CurrentItems.class);
+    mapper.addClassMapping(NextItemDomain.class, NextItem.class);
 
     return mapper;
   }

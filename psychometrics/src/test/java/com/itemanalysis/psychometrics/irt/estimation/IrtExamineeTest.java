@@ -160,7 +160,7 @@ public class IrtExamineeTest {
             iVec.setResponseVector(lsat7[j]);
             map = iVec.mapEstimate(0.0, 1.0, -4.0, 4.0);
             se = iVec.mapStandardErrorAt(map);
-//            System.out.println("MAP" + j + ": " + map + " SE: " + se);
+            System.out.println("MAP" + j + ": " + map + " SE: " + se);
             assertEquals("  MAP Test" + j, trueMAP_LSAT7[j], map, 1e-4);
         }
 

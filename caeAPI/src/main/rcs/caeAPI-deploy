@@ -10,7 +10,7 @@ node("shared-jenkins"){
     def GITHUB_REPO = 'git@github.com:rsinsights/cae.git'
     def GITHUB_REPO_DIR = './cae'
 
-    def NOMAD_JOBFILE_DIR = 'cae/caeAPI/src/main/rcs/nomad'
+    def NOMAD_JOBFILE_DIR = './caeAPI/src/main/rcs/nomad'
     def HOST_TO_RUN_THE_NOMAD_JOB_FROM = 'bastion'
     def SSL_PARAMS = ' -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  '
     def SSH_WITH_PARAMS = "ssh ${SSL_PARAMS} -l ec2-user"

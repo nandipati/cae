@@ -1,0 +1,39 @@
+node {
+
+    def Credentials = '5a53f314-d71f-11e8-9f8b-f2801f1b9fd1'
+    def Branch = 'master'
+    def ReleasePrefix = "grading-services"
+    def RepoLink = "https://github.com/rsinsights/cae"
+
+    stage 'Checkout'
+            git branch: "${Branch}", credentialsId: Credentials , url: RepoLink
+           // checkout scm
+           sh "ls -al"
+            sh "git rev-parse HEAD > commit"
+            def git_commit = readFile('commit').trim()
+
+           // def v = version().minus("-SNAPSHOT")
+           // def next_snapshot_v = nextversion(v)
+          //  currentBuild.displayName = v + "."+ "${currentBuild.displayName}".minus("#")
+           // if(v){
+           //		echo "Building version ${v} ${currentBuild.displayName} ${next_snapshot_v}"
+          //  }
+
+    def mvnHome = tool name: 'MAVEN_3.5.2', type: 'hudson.tasks.Maven$MavenInstallation'
+
+    stage ('Compile') {
+            echo "def mvn"
+            echo "sh running"
+            sh "$mvnHome/bin/mvn clean compile -Dbuild.number=$git_commit"
+    }
+
+    def ReleaseBranchName = null
+    def ReleaseTagName = null
+
+
+    stage ('Build and Release Artifact') {
+        sh "sudo $mvnHome/bin/mvn clean"
+        sh "$mvnHome/bin/mvn -Dmaven.test.skip=true install"
+        sh "$mvnHome/bin/mvn deploy -Dbuild.number=$git_commit -Dmaven.test.skip=true"
+    }
+}

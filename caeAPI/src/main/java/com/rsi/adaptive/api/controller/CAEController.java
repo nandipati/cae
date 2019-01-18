@@ -7,10 +7,8 @@ import com.rsi.adaptive.api.utils.Constants;
 import com.rsi.adaptive.api.view.InputResponse;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;
 
-//import com.rsi.security.common.converter.RSIRoleConverter;
 import com.rsi.security.common.converter.RSIRoleConverter;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

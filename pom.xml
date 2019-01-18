@@ -45,6 +45,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <start-class>com.rsi.adaptive.api.CAEApplication</start-class>
+        <common.security.version>1.0.0-SNAPSHOT</common.security.version>
+        <logstash-logback-encoder.version>4.7</logstash-logback-encoder.version>
     </properties>
     <dependencies>
         <dependency>

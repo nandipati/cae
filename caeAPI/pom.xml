@@ -26,6 +26,29 @@
       <artifactId>caeCALC</artifactId>
       <version>0.1-SNAPSHOT</version>
     </dependency>
+    <dependency>
+      <groupId>com.rsi.security</groupId>
+      <artifactId>security-common</artifactId>
+      <version>${common.security.version}</version>
+      <exclusions>
+        <exclusion>
+          <artifactId>mockito-all</artifactId>
+          <groupId>org.mockito</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>slf4j-log4j12</artifactId>
+          <groupId>org.slf4j</groupId>
+        </exclusion>
+          <exclusion>
+            <artifactId>google-collections</artifactId>
+            <groupId>com.google.collections</groupId>
+          </exclusion>
+          <exclusion>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+          </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
 
 </project>

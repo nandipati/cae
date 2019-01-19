@@ -8,7 +8,6 @@ public enum Consumer {
   ONLINE("online"),
   SIMULATION("simulation");
 
-
   private  String consumerName;
 
   Consumer( String consumerName) {

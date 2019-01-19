@@ -4,10 +4,15 @@ import com.rsi.adaptive.api.service.MLEAndSEService;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.StudentResponseView;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by suryadevarap on 1/15/19.
  */
-public interface Client {
+public interface Item {
 
-   StudentResponseView clientCall(StudentRequestView requestView,MLEAndSEService mleAndSEService);
+  StudentResponseView firstItem(StudentRequestView requestView);
+
+  StudentResponseView nextItem(StudentRequestView requestView);
+
 }

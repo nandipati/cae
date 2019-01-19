@@ -4,6 +4,8 @@ import com.rsi.adaptive.calc.domain.CurrentItemsDomain;
 import com.rsi.adaptive.calc.domain.NextItemDomain;
 import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
 /**
@@ -13,8 +15,6 @@ public interface MLEAndSECalcService {
 
    List<TestStudentsDomain> calculateMLEAndSEForAll(byte[][] responseVector);
 
-   NextItemDomain calcMLESimulationForFirstItem(int grade);
-
-   NextItemDomain calcMLESimulationForNextItem(CurrentItemsDomain currentItemsDomain,int grade);
+   double calcEstimatedForNextItem(double[] IPram,double randomAbility,int itemResponse);
 
 }

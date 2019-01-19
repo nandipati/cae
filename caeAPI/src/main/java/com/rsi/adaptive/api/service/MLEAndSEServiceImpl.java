@@ -1,9 +1,11 @@
 package com.rsi.adaptive.api.service;
 
 
+import com.rsi.adaptive.api.client.ItemFactory;
 import com.rsi.adaptive.api.mapper.DomainMapper;
 import com.rsi.adaptive.api.view.NextItem;
 import com.rsi.adaptive.api.view.StudentRequestView;
+import com.rsi.adaptive.api.view.StudentResponseView;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;
 import com.rsi.adaptive.api.view.TestStudents;
 import com.rsi.adaptive.calc.service.MLEAndSECalcService;
@@ -48,14 +50,13 @@ public class MLEAndSEServiceImpl implements MLEAndSEService {
   }
 
   @Override
-  public NextItem getByGrade(int grade) {
-    return mapper.convert(mleAndSECalcService.calcMLESimulationForFirstItem( grade));
-  }
+  public StudentResponseView getNextItem(StudentRequestView requestView, String consumer) {
 
-  @Override
-  public NextItem getByAbility(StudentRequestView requestView) {
-    return mapper.convert(mleAndSECalcService.calcMLESimulationForNextItem( mapper.convert(requestView.currentItems),requestView
-        .getGrade()));
+    StudentResponseView responseView;
+
+    responseView = ItemFactory.getNextItem(consumer,requestView);
+
+    return responseView;
   }
 
 }

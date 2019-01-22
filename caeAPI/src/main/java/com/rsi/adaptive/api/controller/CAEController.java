@@ -62,6 +62,8 @@ public class CAEController extends AbstractBaseController{
 
   }
 
+  @PreAuthorize(
+      "hasAnyRole('" + RSIRoleConverter.ROLE_TRUSTEDAPI + "')")
   @RequestMapping(value = "/quiz", method = RequestMethod.POST, produces = Constants.JSON, consumes = Constants.JSON)
   public StudentResponseView quiz(
       @PathVariable(Constants.VERSION_PARAM_NAME) String versionNbr,

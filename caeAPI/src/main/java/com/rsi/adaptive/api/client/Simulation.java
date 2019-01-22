@@ -18,15 +18,11 @@ import java.util.Random;
 @Component
 public class Simulation implements Item {
 
-  @Autowired
-  private MLEAndSECalcService mleAndSECalcService;
-
   private static MLEAndSECalcService service;
 
   @Autowired
   private void  setMleAndSECalcService(MLEAndSECalcService mleAndSECalcService){
     service = mleAndSECalcService;
-
   }
 
   @Override
@@ -101,7 +97,6 @@ public class Simulation implements Item {
     nextItem.setDifficulty(randomDiffGenerator(estimatedTheta));
 
     return nextItem;
-
   }
 
 }

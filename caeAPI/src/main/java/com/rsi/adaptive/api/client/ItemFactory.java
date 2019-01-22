@@ -1,5 +1,6 @@
 package com.rsi.adaptive.api.client;
 
+import com.rsi.adaptive.api.controller.exception.NotFoundException;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.StudentResponseView;
 
@@ -14,9 +15,8 @@ public abstract class ItemFactory {
       return new Simulation();
     else if (Consumer.ONLINE.getConsumerName().equals(client))
       return new Online();
-    return null;
+    else throw new NotFoundException("please use valid consumer either 'simulation' or 'online' ");
   }
-
 
   public static StudentResponseView getNextItem(String client, StudentRequestView requestView){
 

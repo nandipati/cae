@@ -21,8 +21,6 @@ public class DomainMapperConfiguration {
     GenericDomainMapperImpl mapper = new GenericDomainMapperImpl();
 
     mapper.addClassMapping( TestStudentsDomain.class,TestStudents.class);
-    mapper.addClassMapping(CurrentItemsDomain.class,CurrentItems.class);
-    mapper.addClassMapping(NextItemDomain.class, NextItem.class);
 
     return mapper;
   }

@@ -10,19 +10,19 @@
     <version>0.1-SNAPSHOT</version>
     <distributionManagement>
         <snapshotRepository>
-            <id>nexus</id>
-            <name>maven-snapshots</name>
+            <id>rsinsights-snapshots</id>
+            <name>Riverside Insights Snapshots Deployment Repoisitory</name>
             <url>http://artifact-repo.cnd.hmheng.io/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
-            <id>nexus</id>
-            <name>maven-releases</name>
+            <id>rsinsights-releases</id>
+            <name>Riverside Insights  Release Deployment Repository</name>
             <url>http://artifact-repo.cnd.hmheng.io/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
     <repositories>
         <repository>
-            <id>maven-release</id>
+            <id>rsinsights</id>
             <url>http://artifact-repo.cnd.hmheng.io/repository/maven-public/</url>
         </repository>
     </repositories>
@@ -45,7 +45,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <start-class>com.rsi.adaptive.api.CAEApplication</start-class>
-    </properties>
+        <common.security.version>1.0.0-SNAPSHOT</common.security.version>
+     </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

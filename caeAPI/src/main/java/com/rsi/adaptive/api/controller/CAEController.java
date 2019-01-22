@@ -7,7 +7,9 @@ import com.rsi.adaptive.api.utils.Constants;
 import com.rsi.adaptive.api.view.InputResponse;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;
 
+import com.rsi.security.common.converter.RSIRoleConverter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -27,6 +29,8 @@ public class CAEController extends AbstractBaseController{
   /* General test-case restCall for a given responseVector */
   @RequestMapping(value = "/testResponse", method = RequestMethod.POST, produces = Constants.JSON,
                   consumes = Constants.JSON)
+  @PreAuthorize(
+      "hasAnyRole('" + RSIRoleConverter.ROLE_TRUSTEDAPI + "')")
   public TestStudentsResponseView showResponse(
       @PathVariable(Constants.VERSION_PARAM_NAME) String versionNbr,
       @RequestParam boolean test)

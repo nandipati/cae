@@ -3,7 +3,7 @@ node {
     def Credentials = '8c9748fb-2057-41ae-bc03-ac53246de8ab'
     def Branch = 'master'
     def ReleasePrefix = "grading-services"
-    def RepoLink = "https://github.com/rsinsights/cae"
+    def RepoLink = "git@github.com:rsinsights/cae.git"
 
     stage 'Checkout'
             git branch: "${Branch}", credentialsId: Credentials , url: RepoLink

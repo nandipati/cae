@@ -1,8 +1,14 @@
 package com.rsi.adaptive.api.client;
 
 import com.rsi.adaptive.api.controller.exception.NotFoundException;
+import com.rsi.adaptive.api.view.CurrentItems;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.StudentResponseView;
+
+import org.springframework.util.CollectionUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by suryadevarap on 1/16/19.
@@ -24,11 +30,14 @@ public abstract class ItemFactory {
 
     StudentResponseView responseView;
 
-    if (requestView.getCurrentItems().getReference()!=null){
-      responseView= nextItemConsumer != null ? nextItemConsumer.nextItem(requestView) : null;
-    }else{
-      responseView= nextItemConsumer != null ? nextItemConsumer.firstItem(requestView) : null;
-    }
+      List<CurrentItems> currentItemsList =  requestView.getCurrentItems();
+
+      if (!CollectionUtils.isEmpty(currentItemsList)) {
+        responseView = nextItemConsumer != null ? nextItemConsumer.nextItem(requestView) : null;
+      } else {
+        responseView = nextItemConsumer != null ? nextItemConsumer.firstItem(requestView) : null;
+      }
+
 
     return responseView;
   }

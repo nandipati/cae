@@ -2,6 +2,8 @@ package com.rsi.adaptive.api.view;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -10,10 +12,13 @@ import lombok.Data;
 @Data
 public class StudentRequestView extends AbstractView{
 
+  @JsonProperty("session_id")
   public String sessionId;
+  @JsonProperty("adaptive_activity")
   public AdaptiveActivity adaptiveActivity;
   @JsonProperty("current_items")
-  public CurrentItems currentItems;
-  public int grade;
+  public List<CurrentItems> currentItems;
+  @JsonProperty("custom_state")
+  public CustomStateRequest customState;
 
 }

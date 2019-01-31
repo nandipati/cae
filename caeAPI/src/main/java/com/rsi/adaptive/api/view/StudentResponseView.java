@@ -1,5 +1,7 @@
 package com.rsi.adaptive.api.view;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 /**
@@ -8,7 +10,11 @@ import lombok.Data;
 @Data
 public class StudentResponseView {
 
+  @JsonProperty("next_items")
   public NextItem nextItem;
+  @JsonProperty("is_last_items")
   public boolean lastItem;
+  @JsonProperty("custom_state")
+  public CustomStateResponse customStateResponse;
 
 }

@@ -1,7 +1,5 @@
 package com.rsi.adaptive.api.controller;
 
-import com.rsi.adaptive.api.client.Item;
-import com.rsi.adaptive.api.client.ItemFactory;
 import com.rsi.adaptive.api.controller.enums.AdaptiveEndpoint;
 import com.rsi.adaptive.api.controller.wrapper.InputFileWrapper;
 import com.rsi.adaptive.api.service.MLEAndSEService;
@@ -64,8 +62,8 @@ public class CAEController extends AbstractBaseController{
 
   @PreAuthorize(
       "hasAnyRole('" + RSIRoleConverter.ROLE_TRUSTEDAPI + "')")
-  @RequestMapping(value = "/quiz", method = RequestMethod.POST, produces = Constants.JSON, consumes = Constants.JSON)
-  public StudentResponseView quiz(
+  @RequestMapping(value = "/nextItem", method = RequestMethod.POST, produces = Constants.JSON, consumes = Constants.JSON)
+  public StudentResponseView nextItem(
       @PathVariable(Constants.VERSION_PARAM_NAME) String versionNbr,
       @RequestParam(value = "consumer",required = false, defaultValue = "online") String consumer,
       @RequestBody StudentRequestView requestView){

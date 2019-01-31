@@ -7,7 +7,6 @@ import com.rsi.adaptive.api.view.StudentResponseView;
 
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

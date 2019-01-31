@@ -1,7 +1,5 @@
 package com.rsi.adaptive.calc.service;
 
-import com.rsi.adaptive.calc.domain.CurrentItemsDomain;
-import com.rsi.adaptive.calc.domain.NextItemDomain;
 import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 
 import org.springframework.stereotype.Component;

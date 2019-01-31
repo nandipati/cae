@@ -1,7 +1,5 @@
 package com.rsi.adaptive.api.service;
 
-import com.rsi.adaptive.api.view.CurrentItems;
-import com.rsi.adaptive.api.view.NextItem;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.StudentResponseView;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;

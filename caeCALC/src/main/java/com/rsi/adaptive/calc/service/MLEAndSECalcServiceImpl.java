@@ -5,18 +5,14 @@ import com.itemanalysis.psychometrics.irt.estimation.IrtExaminee;
 import com.itemanalysis.psychometrics.irt.model.Irm3PL;
 import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
 import com.itemanalysis.psychometrics.optimization.SloppyMath;
-import com.rsi.adaptive.calc.domain.CurrentItemsDomain;
-import com.rsi.adaptive.calc.domain.NextItemDomain;
+
 import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 import com.rsi.adaptive.calc.enums.ItemParameters;
-import com.rsi.adaptive.calc.math.CALCUtils;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created by suryadevarap on 1/7/19.

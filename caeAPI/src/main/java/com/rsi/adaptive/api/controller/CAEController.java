@@ -30,7 +30,7 @@ public class CAEController extends AbstractBaseController{
   private MLEAndSEService mleAndSEService;
 
   /* General test-case restCall for a given responseVector */
-  @RequestMapping(value = "/testResponse", method = RequestMethod.POST, produces = Constants.JSON,
+  @RequestMapping(value = "/testFileResponse", method = RequestMethod.POST, produces = Constants.JSON,
                   consumes = Constants.JSON)
   @PreAuthorize(
       "hasAnyRole('" + RSIRoleConverter.ROLE_TRUSTEDAPI + "')")

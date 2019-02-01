@@ -22,3 +22,15 @@ spring:
 ---
 spring:
   profiles: dev
+
+---
+spring:
+  profiles: TEST
+
+---
+spring:
+  profiles: stage
+
+---
+spring:
+  profiles: prod

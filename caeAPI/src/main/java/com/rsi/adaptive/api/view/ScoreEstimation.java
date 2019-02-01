@@ -11,7 +11,7 @@ import lombok.Data;
 public class ScoreEstimation {
 
   @JsonProperty("estimation_type")
-  public String estimationType;
+  public EstimatedMethod estimationMethod;
   @JsonProperty("test_type")
   public String testType;
   @JsonProperty("interim_range")

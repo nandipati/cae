@@ -18,10 +18,10 @@ public class CustomStateRequest {
    public ThetaRange thetaRange;
    @JsonProperty("total_pool_items")
    public int totalPoolItems;
-   @JsonProperty("scaling")
-   public Double D;
+   @JsonProperty("IRTScalingValueD")
+   public Double IRTScalingValueD;
    @JsonProperty("IRT_model")
-   public String IRT_model;
+   public String IRTModel;
    @JsonProperty("item_type")
    public String itemType;
    @JsonProperty("test_length")

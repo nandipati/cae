@@ -12,18 +12,18 @@
         <snapshotRepository>
             <id>rsinsights-snapshots</id>
             <name>Riverside Insights Snapshots Deployment Repoisitory</name>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-snapshots/</url>
+            <url>http://artifact-repo.service.cndnp.hmheng.internal/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
             <id>rsinsights-releases</id>
             <name>Riverside Insights  Release Deployment Repository</name>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-releases/</url>
+            <url>http://artifact-repo.service.cndnp.hmheng.internal/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
     <repositories>
         <repository>
             <id>rsinsights</id>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-public/</url>
+            <url>http://artifact-repo.service.cndnp.hmheng.internal/repository/maven-public/</url>
         </repository>
     </repositories>
 

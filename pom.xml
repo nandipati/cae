@@ -47,8 +47,12 @@
         <java.version>1.8</java.version>
         <start-class>com.rsi.adaptive.api.CAEApplication</start-class>
         <common.security.version>1.0.0-SNAPSHOT</common.security.version>
+
         <java.xmx.mb>900</java.xmx.mb>
         <java.xms.mb>512</java.xms.mb>
+
+        <spring-cloud-starter-config.version>2.1.0.RELEASE</spring-cloud-starter-config.version>
+
      </properties>
     <dependencies>
         <dependency>

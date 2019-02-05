@@ -5,7 +5,8 @@ RUN apk fetch openjdk8
 RUN apk add openjdk8
 
 VOLUME /tmp
-ADD caeAPI-0.1-SNAPSHOT.jar app.jar
+
+ADD @project.build.finalName@.@project.packaging@ app.@project.packaging@
 ADD docker-entrypoint.sh /usr/src/app/
 
 RUN chmod +x /usr/src/app/docker-entrypoint.sh

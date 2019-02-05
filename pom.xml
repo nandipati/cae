@@ -41,11 +41,14 @@
     </modules>
 
     <properties>
+        <finalName>${project.artifactId}-${version}</finalName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <start-class>com.rsi.adaptive.api.CAEApplication</start-class>
         <common.security.version>1.0.0-SNAPSHOT</common.security.version>
+        <java.xmx.mb>900</java.xmx.mb>
+        <java.xms.mb>512</java.xms.mb>
      </properties>
     <dependencies>
         <dependency>
@@ -82,6 +85,17 @@
         </dependency>
     </dependencies>
     <build>
+        <finalName>${finalName}</finalName>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources/</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/rcs/</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

@@ -9,7 +9,7 @@ job "caeAPI" {
   constraint {
     attribute = "${meta.group}"
     operator = "set_contains"
-    value = "rcs-easycbm"         //for now run in easy-cbm group..but need to create a new group for adaptive
+    value = "adaptive-services"         //for now run in easy-cbm group..but need to create a new group for adaptive
   }
 
   constraint {
@@ -21,7 +21,7 @@ job "caeAPI" {
   constraint {
     attribute = "${node.class}"
     operator = "set_contains"
-    value     = "TEST"
+    value     = "ENVIRONMENT"       //replace it depending on the env it is running
   }
 
   datacenters = ["dc1"]
@@ -37,37 +37,37 @@ job "caeAPI" {
       mode = "delay"
     }
 
-    task "caeAPI" {
+    task "TASK-STAGE" {
       driver = "docker"
       config {
-        image = "artifact-repo.service.cndnp.hmheng.internal:6070/rcs/adaptive/caeAPI:tag" //use consul template get the value of easycbm_git_sha and other from consul assuming jenkins put it in consul after the docker built and pushed
+        image = "artifact-repo.service.rcsnp.rsiapps.internal:6070/rcs/adaptive/cae-api:tag" //use consul template get the value of easycbm_git_sha and other from consul assuming jenkins put it in consul after the docker built and pushed
         volumes = [
           # Used named volume created outside nomad.
-          "/home/ec2-user/mnt/efs/rcs-app01/adaptive:/tmp:rw"
+          "/home/ec2-user/mnt/efs/rcs-app01/adaptive-ENVIRONMENT:/tmp:rw"
         ]
         privileged = true
         port_map {
-          http = 80
+          http = 8080
 
         }
-
+        args = ["/usr/lib/jvm/java-8-oracle/bin/java","-Xmx@java.xmx.mb@m","-Xms@java.xms.mb@m","-jar","/app.jar","--server.port=8080","--management.port=8888"],
       }
       logs {
         max_files     = 10
         max_file_size = 25
       }
       service {
-        name = "caeAPI"
+        name = "TASK-STAGE"       //replace name based on the env it is running
         port = "http"
       }
       resources {
-        cpu = 500
-        memory = 500
-        disk = 500
+        cpu = @nomad.resources.cpu@
+        memory = @nomad.resources.mem@
+        disk = @nomad.resources.disk@
         network {
           mbits = 100
           port "http" {
-            static = "8081"
+            static = "80"
           }
         }
       }

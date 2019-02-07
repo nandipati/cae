@@ -3,7 +3,7 @@ node("shared-jenkins"){
     def SSH_CREDENTIALS_ID = '35cd86cd-49b5-4144-bfbc-d5b8f344f88e'
 
     def DOCKER_ARTIFACT_REPO = "artifact-repo.service.cndnp.hmheng.internal:6069"
-    def DOCKER_IMAGE = "rcs/adaptive/caeAPI"
+    def DOCKER_IMAGE = "rcs/adaptive/cae-api"
 
     def GITHUB_CREDENTIALS_ID = '8c9748fb-2057-41ae-bc03-ac53246de8ab'
 
@@ -37,6 +37,8 @@ stage('deploy caeAPI'){
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM}  mkdir -p ${NOMAD_JOBFILE_DIR}"
 
                  sh "sed -i 's/tag/${git_commit}/g'  ${NOMAD_JOBFILE_DIR}/${env.NOMAD_FILE}.nomad"
+                 sh "sed -i 's/TASK-STAGE/cae-api-${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/${env.NOMAD_FILE}.nomad"
+                 sh "sed -i 's/ENVIRONMENT/${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/${env.NOMAD_FILE}.nomad"
                  sh " scp ${SSL_PARAMS}  ${NOMAD_JOBFILE_DIR}/${env.NOMAD_FILE}.nomad ec2-user@${HOST_TO_RUN_THE_NOMAD_JOB_FROM}:${NOMAD_JOBFILE_DIR} "
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM} cs run   ${NOMAD_JOBFILE_DIR}/${env.NOMAD_FILE}.nomad "
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM} rm -rf ${NOMAD_JOBFILE_DIR}"

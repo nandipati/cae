@@ -39,8 +39,9 @@ public class NextItemServiceImpl implements NextItemService{
 
     AbilityEstimations abilityEstimations = AbilityFactory.getClient(consumer);
 
-    estimations = mapper.convert( abilityEstimations != null ? abilityEstimations.getEstimations(mapper.convertDomain(requestView.getCurrentItems())
-        , customStateMapper.convert(requestView.getCustomState())) : null);
+    estimations = mapper.convert( abilityEstimations != null ?
+        abilityEstimations.getEstimations(mapper.convertDomain(requestView.getCurrentItems()),
+            customStateMapper.convert(requestView.getCustomState())) : null);
 
     customStateResponse.setEstimatedAbility(estimations);
 

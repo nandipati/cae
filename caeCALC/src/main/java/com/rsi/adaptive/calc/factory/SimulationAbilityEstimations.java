@@ -83,30 +83,23 @@ public class SimulationAbilityEstimations implements AbilityEstimations {
         }if(inCorrectCount == currentItemsList.size() ){
           ability = ability-(0.1);
           estimationsDomain.setEstimatedAbility(ability);
-        }else{
+        }else if (EstimatedMethod.MLE.equals(estimatedMethod)) {
+          MLEAndSE mleAndSE = calcService
+              .getMLEAndSE(buildResponseVector(currentItemsList, 1), currentItemsList.size(), disc, diff,
+                  customStateRequestDomain.getThetaRange().getMin(), customStateRequestDomain.getThetaRange().getMax());
 
-          if(EstimatedMethod.MLE.equals(estimatedMethod)){
-
-            MLEAndSE mleAndSE= calcService.getMLEAndSE(buildResponseVector(currentItemsList,1), currentItemsList.size(),disc,
-                diff, customStateRequestDomain.getThetaRange().getMin(),customStateRequestDomain.getThetaRange().getMax());
-
-            estimationsDomain.setEstimatedAbility(SloppyMath.round(mleAndSE.getMle(), 3));
-            estimationsDomain.setMle(SloppyMath.round(mleAndSE.getMle(), 3));
-            estimationsDomain.setSe(SloppyMath.round(mleAndSE.getSe(), 3));
-          }
+          estimationsDomain.setEstimatedAbility(SloppyMath.round(mleAndSE.getMle(), 3));
+          estimationsDomain.setMle(SloppyMath.round(mleAndSE.getMle(), 3));
+          estimationsDomain.setSe(SloppyMath.round(mleAndSE.getSe(), 3));
         }
-
       }else{
         //first 4 items
         estimationsDomain.setEstimatedAbility(ability);
       }
-
     }else{
       //firstItem
       estimationsDomain.setEstimatedAbility(ability);
     }
-
-
     return estimationsDomain;
   }
 

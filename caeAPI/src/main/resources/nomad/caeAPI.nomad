@@ -9,13 +9,13 @@ job "caeAPI" {
   constraint {
     attribute = "${meta.group}"
     operator = "set_contains"
-    value = "easycbm-services"         //for now run in easy-cbm group..but need to create a new group for adaptive
+    value = "adaptive-services"
   }
 
   constraint {
     attribute = "${meta.env}"
     operator = "="
-    value = "cndcorenp"
+    value = "rcscorenp"
   }
 
   constraint {

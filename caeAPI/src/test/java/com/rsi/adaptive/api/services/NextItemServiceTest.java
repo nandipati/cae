@@ -1,7 +1,7 @@
 package com.rsi.adaptive.api.services;
 
-import com.rsi.adaptive.api.service.MLEAndSEService;
-import com.rsi.adaptive.api.service.MLEAndSEServiceImpl;
+import com.rsi.adaptive.api.service.NextItemService;
+import com.rsi.adaptive.api.service.NextItemServiceImpl;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -12,12 +12,12 @@ import org.mockito.junit.MockitoRule;
 /**
  * Created by suryadevarap on 1/30/19.
  */
-public class MLEAndSEServiceTest {
+public class NextItemServiceTest {
   @Rule
   public MockitoRule mockitoRule = MockitoJUnit.rule();
 
   @InjectMocks
-  private MLEAndSEService mleAndSEService = new MLEAndSEServiceImpl();
+  private NextItemService mleAndSEService = new NextItemServiceImpl();
 
   @Before
   public void setUp(){

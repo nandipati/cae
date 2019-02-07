@@ -2,6 +2,7 @@ package com.rsi.adaptive.api.service;
 
 import com.rsi.adaptive.api.factory.ItemSelection;
 import com.rsi.adaptive.api.factory.ItemSelectionFactory;
+import com.rsi.adaptive.api.mapper.CustomStateRequestDomainMapper;
 import com.rsi.adaptive.api.mapper.DomainMapper;
 import com.rsi.adaptive.calc.domain.CustomStateRequestDomain;
 import com.rsi.adaptive.calc.domain.ScoreEstimationDomain;
@@ -29,6 +30,9 @@ public class NextItemServiceImpl implements NextItemService{
   @Autowired
   private DomainMapper mapper;
 
+  @Autowired
+  private CustomStateRequestDomainMapper customStateMapper;
+
   @Override
   public StudentResponseView getNextItem(StudentRequestView requestView, String consumer) {
 
@@ -39,10 +43,8 @@ public class NextItemServiceImpl implements NextItemService{
 
     AbilityEstimations abilityEstimations = AbilityFactory.getClient(consumer);
 
-    CustomStateRequestDomain customStateRequestDomain = buildCustomStateRequestDomainMapper(requestView);
-
     estimations = mapper.convert( abilityEstimations != null ? abilityEstimations.getEstimations(mapper.convertDomain(requestView.getCurrentItems())
-        , customStateRequestDomain) : null);
+        , customStateMapper.convert(requestView.getCustomState())) : null);
 
     customStateResponse.setEstimatedAbility(estimations);
 
@@ -53,21 +55,6 @@ public class NextItemServiceImpl implements NextItemService{
     responseView.setCustomStateResponse(customStateResponse);
 
     return responseView;
-  }
-
-  private CustomStateRequestDomain buildCustomStateRequestDomainMapper(StudentRequestView requestView) {
-
-    ThetaRangeDomain thetaRangeDomain = mapper.convert(requestView.getCustomState().getThetaRange());
-
-    List<ScoreEstimationDomain> scoreEstimationDomain = mapper.convertDomain(requestView.getCustomState()
-        .getScoreEstimation());
-
-    CustomStateRequestDomain customStateRequestDomain = mapper.convert(requestView.getCustomState());
-
-    customStateRequestDomain.setThetaRange(thetaRangeDomain);
-    customStateRequestDomain.setScoreEstimation(scoreEstimationDomain);
-
-    return customStateRequestDomain;
   }
 
 }

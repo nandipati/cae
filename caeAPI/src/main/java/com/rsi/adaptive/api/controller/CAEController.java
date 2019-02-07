@@ -3,6 +3,7 @@ package com.rsi.adaptive.api.controller;
 import com.rsi.adaptive.api.controller.enums.AdaptiveEndpoint;
 import com.rsi.adaptive.api.controller.wrapper.InputFileWrapper;
 import com.rsi.adaptive.api.service.MLEAndSEService;
+import com.rsi.adaptive.api.service.NextItemService;
 import com.rsi.adaptive.api.utils.Constants;
 import com.rsi.adaptive.api.view.InputResponse;
 import com.rsi.adaptive.api.view.StudentRequestView;
@@ -28,6 +29,9 @@ public class CAEController extends AbstractBaseController{
 
   @Autowired
   private MLEAndSEService mleAndSEService;
+
+  @Autowired
+  private NextItemService nextItemService;
 
   /* General test-case restCall for a given responseVector */
   @RequestMapping(value = "/testFileResponse", method = RequestMethod.POST, produces = Constants.JSON,
@@ -68,7 +72,7 @@ public class CAEController extends AbstractBaseController{
       @RequestParam(value = "consumer",required = false, defaultValue = "online") String consumer,
       @RequestBody StudentRequestView requestView){
 
-       return mleAndSEService.getNextItem(requestView,consumer);
+       return nextItemService.getNextItem(requestView,consumer);
 
   }
 

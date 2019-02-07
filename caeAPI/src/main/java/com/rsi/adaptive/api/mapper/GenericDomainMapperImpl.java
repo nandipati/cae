@@ -51,11 +51,28 @@ public class GenericDomainMapperImpl  implements DomainMapper {
     return createDomainInstance(domainClazz, view);
   }
 
+  @Override
+  public <V extends AbstractView, D extends AbstractDomain> List<D> convertDomain(List<V> views) {
+
+    if (CollectionUtils.isEmpty(views)) {
+      return new ArrayList<>();
+    }
+
+    Class<? extends AbstractView> clazz = views.get(0).getClass();
+    Class<D> viewClazz = finddomainClass(clazz);
+
+    return views.stream().map(e -> createDomainInstance(viewClazz, e)).collect(Collectors.toList());
+  }
+
   public void addClassMapping(Class<? extends AbstractDomain> domainClazz, Class<? extends AbstractView> viewClazz) {
     domainToViewMapping.put(domainClazz, viewClazz);
     viewToDomainMapping.put(viewClazz, domainClazz);
   }
-
+  public void addDomainClassMapping(Class<? extends AbstractView> viewClazz, Class<? extends AbstractDomain>
+      domainClazz) {
+    domainToViewMapping.put(domainClazz, viewClazz);
+    viewToDomainMapping.put(viewClazz, domainClazz);
+  }
   @SuppressWarnings("unchecked")
   private <V extends AbstractView, D extends AbstractDomain> Class<V> findViewClass(Class<D> domainClazz) {
 
@@ -86,6 +103,12 @@ public class GenericDomainMapperImpl  implements DomainMapper {
   @Override
   public <V extends AbstractView, D extends AbstractDomain> List<V> convert(List<D> domains, Class<V> targetClazz) {
     return domains.stream().map(e -> createViewInstance(targetClazz, e)).collect(Collectors.toList());
+  }
+
+  @Override
+  public <V extends AbstractView, D extends AbstractDomain> List<D> convertDomain(List<V> views, Class<D> targetClazz) {
+    return views.stream().map(e -> createDomainInstance(targetClazz, e)).collect(Collectors.toList());
+
   }
 
   private <V extends AbstractView, D extends AbstractDomain> V createViewInstance(Class<V> viewClazz, D domain) {

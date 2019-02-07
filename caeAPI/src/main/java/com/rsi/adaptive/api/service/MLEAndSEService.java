@@ -11,6 +11,4 @@ public interface MLEAndSEService {
 
   TestStudentsResponseView getMLEAndSE(byte[][] responseVector);
 
-  StudentResponseView getNextItem(StudentRequestView requestView, String consumer);
-
 }

@@ -10,10 +10,12 @@ import lombok.Data;
  * Created by suryadevarap on 1/29/19.
  */
 @Data
-public class CustomStateRequest {
+public class CustomStateRequest extends AbstractView {
 
    public String grade;
    public String subject;
+   @JsonProperty("number_of_examine")
+   public int NumberOfExamine;
    @JsonProperty("theta_range")
    public ThetaRange thetaRange;
    @JsonProperty("total_pool_items")

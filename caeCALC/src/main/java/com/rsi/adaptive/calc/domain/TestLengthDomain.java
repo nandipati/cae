@@ -1,14 +1,15 @@
-package com.rsi.adaptive.api.view;
+package com.rsi.adaptive.calc.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
 /**
- * Created by suryadevarap on 1/29/19.
+ * Created by suryadevarap on 2/6/19.
  */
 @Data
-public class TestLength extends AbstractView{
+public class TestLengthDomain extends AbstractDomain {
+
 
   @JsonProperty("total_items")
   public int totalItems;

@@ -1,6 +1,6 @@
 package com.rsi.adaptive.api.controller;
 
-import com.rsi.adaptive.api.service.MLEAndSEService;
+import com.rsi.adaptive.api.service.NextItemService;
 import com.rsi.adaptive.api.testUtils.AuthenticateAs;
 import com.rsi.adaptive.api.testUtils.AuthenticationRule;
 import com.rsi.adaptive.api.view.StudentRequestView;
@@ -25,7 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class CAEControllerTest extends RestControllerTest {
 
   @Autowired
-  private MLEAndSEService mleAndSEService;
+  private NextItemService nextItemService;
 
   @Rule
   public AuthenticationRule authenticationRule = new AuthenticationRule();
@@ -38,7 +38,7 @@ public class CAEControllerTest extends RestControllerTest {
 
     StudentRequestView requestView = studentRequestView().build();
 
-    when(mleAndSEService.getNextItem(any(),any())).thenReturn(new
+    when(nextItemService.getNextItem(any(),any())).thenReturn(new
         StudentResponseView());
 
     mockMvc.perform(post("/v1/cae/nextItem?consumer={consumer}", consumer)

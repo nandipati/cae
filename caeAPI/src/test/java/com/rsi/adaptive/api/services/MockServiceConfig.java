@@ -1,8 +1,7 @@
 package com.rsi.adaptive.api.services;
 
-import com.rsi.adaptive.api.service.MLEAndSEService;
+import com.rsi.adaptive.api.service.NextItemService;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -17,8 +16,8 @@ public class MockServiceConfig {
 
   @Bean
   @Primary
-  public MLEAndSEService mleAndSEService(){
-    return mock(MLEAndSEService.class);
+  public NextItemService mleAndSEService(){
+    return mock(NextItemService.class);
   }
 
 }

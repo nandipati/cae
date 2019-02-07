@@ -1,4 +1,4 @@
-package com.rsi.adaptive.calc.math;
+package com.rsi.adaptive.calc.util;
 
 import java.util.Random;
 

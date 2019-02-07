@@ -6,7 +6,8 @@ import lombok.Data;
  * Created by suryadevarap on 1/31/19.
  */
 @Data
-public class EstimatedAbility {
+public class Estimations extends AbstractView{
+  public double estimatedAbility;
   public String reference;
   public double mle;
   public double se;

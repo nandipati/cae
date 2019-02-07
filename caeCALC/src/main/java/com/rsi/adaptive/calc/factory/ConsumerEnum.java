@@ -1,16 +1,16 @@
-package com.rsi.adaptive.api.client;
+package com.rsi.adaptive.calc.factory;
 
 /**
- * Created by suryadevarap on 1/15/19.
+ * Created by suryadevarap on 2/6/19.
  */
-public enum Consumer {
+public enum ConsumerEnum {
 
   ONLINE("online"),
   SIMULATION("simulation");
 
   private  String consumerName;
 
-  Consumer( String consumerName) {
+  ConsumerEnum( String consumerName) {
     this.consumerName = consumerName;
   }
 

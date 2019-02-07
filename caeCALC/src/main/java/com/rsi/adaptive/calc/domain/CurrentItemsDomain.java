@@ -1,5 +1,7 @@
 package com.rsi.adaptive.calc.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Data;
 
 /**
@@ -9,11 +11,13 @@ import lombok.Data;
 public class CurrentItemsDomain extends AbstractDomain {
 
   public String reference;
+  @JsonProperty("organisation_id")
   public String organisationId;
+  @JsonProperty("item_pool_id")
   public String itemPoolId;
-  public double score;
+  public int score;
+  @JsonProperty("max_score")
   public  int   maxScore;
-  public int itemResponse;
   public double discriminator;
   public double difficulty;
 

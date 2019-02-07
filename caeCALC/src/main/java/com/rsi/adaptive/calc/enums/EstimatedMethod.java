@@ -1,4 +1,4 @@
-package com.rsi.adaptive.api.view;
+package com.rsi.adaptive.calc.enums;
 
 /**
  * Created by suryadevarap on 2/1/19.

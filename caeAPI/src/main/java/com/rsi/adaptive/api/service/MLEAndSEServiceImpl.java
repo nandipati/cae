@@ -1,7 +1,7 @@
 package com.rsi.adaptive.api.service;
 
 
-import com.rsi.adaptive.api.client.ItemFactory;
+
 import com.rsi.adaptive.api.mapper.DomainMapper;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.StudentResponseView;
@@ -46,16 +46,6 @@ public class MLEAndSEServiceImpl implements MLEAndSEService {
     System.out.println("totalTime in seconds from service  : "+ totalTimeInSec);
 
     return testStudentsResponseView;
-  }
-
-  @Override
-  public StudentResponseView getNextItem(StudentRequestView requestView, String consumer) {
-
-    StudentResponseView responseView;
-
-    responseView = ItemFactory.getNextItem(consumer,requestView);
-
-    return responseView;
   }
 
 }

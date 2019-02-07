@@ -8,6 +8,7 @@ import com.itemanalysis.psychometrics.optimization.SloppyMath;
 
 import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 import com.rsi.adaptive.calc.enums.ItemParameters;
+import com.rsi.adaptive.calc.view.MLEAndSE;
 
 import org.springframework.stereotype.Component;
 
@@ -72,5 +73,42 @@ public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
 
   }
 
+  @Override
+  public MLEAndSE getMLEAndSE(byte[][] responseVector,int numberOfItems,double[] disc, double[] diff,
+      double thetaMin,double thetaMax) {
+
+    MLEAndSE mleAndSE = new MLEAndSE();
+
+    ItemResponseModel[] irmArray = new ItemResponseModel[numberOfItems];
+
+    VariableName iName;
+    for(int i=0;i<numberOfItems;i++){
+      String name = "V"+i;
+      iName = new VariableName(name);
+
+      irmArray[i] = new Irm3PL(disc[i], diff[i],  1.7);
+      irmArray[i].setName(iName);
+    }
+
+
+    IrtExaminee  iVec = new IrtExaminee(irmArray);
+
+    for (byte[] aResponseVector : responseVector) {
+      double mle;
+      double se;
+
+      iVec.setResponseVector(aResponseVector);
+
+      mle = iVec.maximumLikelihoodEstimate(thetaMin, thetaMax);
+      se = iVec.mleStandardErrorAt(mle);
+
+      mleAndSE.setMle(mle);
+      mleAndSE.setSe(se);
+    }
+
+
+
+    return mleAndSE;
+  }
 
 }

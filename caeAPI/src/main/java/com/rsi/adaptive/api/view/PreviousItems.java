@@ -6,7 +6,7 @@ import lombok.Data;
  * Created by suryadevarap on 1/29/19.
  */
 @Data
-public class PreviousItems {
+public class PreviousItems extends AbstractView {
 
   public String reference;
   public double discriminator;

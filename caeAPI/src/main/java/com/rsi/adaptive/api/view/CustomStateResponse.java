@@ -10,6 +10,6 @@ import lombok.Data;
 @Data
 public class CustomStateResponse {
   @JsonProperty("estimations_for_previous")
-  public EstimatedAbility estimatedAbility;
+  public Estimations estimatedAbility;
 
 }

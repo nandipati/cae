@@ -9,6 +9,7 @@ import com.rsi.adaptive.api.view.ScoreEstimation;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.TestLength;
 import com.rsi.adaptive.api.view.ThetaRange;
+import com.rsi.adaptive.calc.enums.EstimatedMethod;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,8 +67,8 @@ public class StudentRequestViewBuilder {
     customState.setSubject("MATH");
     customState.setThetaRange(thetaRange);
     customState.setTotalPoolItems(100);
-    customState.setD(1.7);
-    customState.setIRT_model("2PL");
+    customState.setIRTScalingValueD(1.7);
+    customState.setIRTModel("2PL");
     customState.setItemType("item");
     customState.setTestLength(testLength);
     customState.setScoreEstimation(createScoreEstimation());
@@ -81,7 +82,7 @@ public class StudentRequestViewBuilder {
     InterimRanges interimRanges = new InterimRanges();
     interimRanges.setFrom(5);
     interimRanges.setTo(39);
-    scoreEstimation.setEstimationType("MLE");
+    scoreEstimation.setEstimationMethod(EstimatedMethod.MLE);
     scoreEstimation.setTestType("item");
     scoreEstimation.setInterimRanges(interimRanges);
     scoreEstimationList.add(scoreEstimation);

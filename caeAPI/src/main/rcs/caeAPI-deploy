@@ -16,7 +16,7 @@ node("shared-jenkins"){
     def SSH_WITH_PARAMS = "ssh ${SSL_PARAMS} -l ec2-user"
 
 stage ('Checkout cae repo') {
-      dir ('techops-easycbm') {
+      dir ('GITHUB_REPO_DIR') {
         git branch: env.GITHUB_BRANCH, credentialsId: GITHUB_CREDENTIALS_ID, url: GITHUB_REPO
         sh "git rev-parse HEAD > commit"
         git_commit = readFile('commit').trim()
@@ -26,7 +26,7 @@ stage ('Checkout cae repo') {
 stage('Build docker container'){
 
         docker.withTool('docker'){
-            def DOCKER_IMAGE_TAG = "${DOCKER_IMAGE}:${git_commit}"
+            def DOCKER_IMAGE_TAG = "${DOCKER_ARTIFACT_REPO}/${DOCKER_IMAGE}:${git_commit}"
             sh " cs builder build -d ./caeAPI/target -f ${env.DOCKER_PROJECT_DIRECTORY}/Dockerfile -t ${DOCKER_IMAGE_TAG}"
         }
     }

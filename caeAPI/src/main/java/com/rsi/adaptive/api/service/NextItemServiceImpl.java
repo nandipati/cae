@@ -4,9 +4,6 @@ import com.rsi.adaptive.api.factory.ItemSelection;
 import com.rsi.adaptive.api.factory.ItemSelectionFactory;
 import com.rsi.adaptive.api.mapper.CustomStateRequestDomainMapper;
 import com.rsi.adaptive.api.mapper.DomainMapper;
-import com.rsi.adaptive.calc.domain.CustomStateRequestDomain;
-import com.rsi.adaptive.calc.domain.ScoreEstimationDomain;
-import com.rsi.adaptive.calc.domain.ThetaRangeDomain;
 import com.rsi.adaptive.calc.factory.AbilityEstimations;
 import com.rsi.adaptive.calc.factory.AbilityFactory;
 import com.rsi.adaptive.api.view.CustomStateResponse;
@@ -18,7 +15,6 @@ import com.rsi.adaptive.api.view.StudentResponseView;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 
 /**
  * Created by suryadevarap on 2/5/19.

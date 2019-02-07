@@ -6,11 +6,11 @@ job "caeAPI" {
     value     = "linux"
   }
 
-  /*constraint {
+  constraint {
     attribute = "${meta.group}"
     operator = "set_contains"
-    value = "adaptive-services"         //for now run in easy-cbm group..but need to create a new group for adaptive
-  }*/
+    value = "easycbm-services"         //for now run in easy-cbm group..but need to create a new group for adaptive
+  }
 
   constraint {
     attribute = "${meta.env}"

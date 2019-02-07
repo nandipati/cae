@@ -50,7 +50,7 @@ job "caeAPI" {
           http = 8080
 
         }
-        args = ["/usr/lib/jvm/java-8-oracle/bin/java","-Xmx@java.xmx.mb@m","-Xms@java.xms.mb@m","-jar","/app.jar","--server.port=8080","--management.port=8888"],
+        args = ["/usr/lib/jvm/java-1.8-openjdk/bin/java","-Xmx@java.xmx.mb@m","-Xms@java.xms.mb@m","-jar","/app.jar","--server.port=8080","--management.port=8888"],
       }
       logs {
         max_files     = 10

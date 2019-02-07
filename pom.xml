@@ -12,18 +12,18 @@
         <snapshotRepository>
             <id>rsinsights-snapshots</id>
             <name>Riverside Insights Snapshots Deployment Repoisitory</name>
-            <url>http://artifact-repo.service.cndnp.hmheng.internal/repository/maven-snapshots/</url>
+            <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
             <id>rsinsights-releases</id>
             <name>Riverside Insights  Release Deployment Repository</name>
-            <url>http://artifact-repo.service.cndnp.hmheng.internal/repository/maven-releases/</url>
+            <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
     <repositories>
         <repository>
             <id>rsinsights</id>
-            <url>http://artifact-repo.service.cndnp.hmheng.internal/repository/maven-public/</url>
+            <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -50,7 +50,9 @@
 
         <java.xmx.mb>900</java.xmx.mb>
         <java.xms.mb>512</java.xms.mb>
-
+        <nomad.resources.cpu>300</nomad.resources.cpu>
+        <nomad.resources.mem>1000</nomad.resources.mem>
+        <nomad.resources.disk>500</nomad.resources.disk>
         <spring-cloud-starter-config.version>2.1.0.RELEASE</spring-cloud-starter-config.version>
 
      </properties>

@@ -61,9 +61,9 @@ job "caeAPI" {
         port = "http"
       }
       resources {
-        cpu = @nomad.resources.cpu@
-        memory = @nomad.resources.mem@
-        disk = @nomad.resources.disk@
+        cpu = 300
+        memory = 1000
+        disk = 500
         network {
           mbits = 100
           port "http" {

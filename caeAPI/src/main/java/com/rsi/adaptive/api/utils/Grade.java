@@ -1,6 +1,6 @@
 package com.rsi.adaptive.api.utils;
 
-import com.rsi.adaptive.api.controller.exception.NotFoundException;
+import com.rsi.adaptive.calc.exception.NotFoundException;
 
 import java.util.Arrays;
 

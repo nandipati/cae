@@ -1,6 +1,5 @@
 package com.rsi.adaptive.api.security;
 
-
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Arrays;
@@ -10,10 +9,9 @@ import java.util.stream.Collectors;
 import static com.rsi.security.common.converter.RSIRoleConverter.ROLE_TRUSTEDAPI;
 
 /**
- * Created by nandipatim on 3/3/16.
+ * Created by suryadevarap on 2/7/19.
  */
 public class CAEUserBuilder {
-
   private UUID userGuid;
   private String[] roles;
 

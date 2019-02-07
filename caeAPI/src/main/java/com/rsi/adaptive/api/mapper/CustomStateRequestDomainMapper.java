@@ -38,7 +38,6 @@ public class CustomStateRequestDomainMapper implements DomainViewMapper<CustomSt
     domain.setThetaRange(thetaRangeDomain);
     domain.setScoreEstimation(scoreEstimationDomain);
 
-
     return domain;
   }
 

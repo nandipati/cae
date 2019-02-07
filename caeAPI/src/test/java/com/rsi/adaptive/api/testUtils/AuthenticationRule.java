@@ -1,6 +1,5 @@
 package com.rsi.adaptive.api.testUtils;
 
-import com.rsi.adaptive.api.security.CAEUserBuilder;
 import com.rsi.adaptive.api.security.SecurityTestUtils;
 
 import org.apache.commons.lang.NotImplementedException;

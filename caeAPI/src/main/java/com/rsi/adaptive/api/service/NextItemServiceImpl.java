@@ -22,7 +22,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class NextItemServiceImpl implements NextItemService{
 
-
   @Autowired
   private DomainMapper mapper;
 

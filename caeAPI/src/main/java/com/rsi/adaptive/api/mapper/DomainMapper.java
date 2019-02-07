@@ -24,6 +24,5 @@ public interface DomainMapper {
 
   <V extends AbstractView, E extends AbstractDomain> List<E> convertDomain(List<V> views, Class<E> targetClazz);
 
-
 }
 

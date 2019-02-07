@@ -1,8 +1,8 @@
 package com.rsi.adaptive.api.factory;
 
-import com.rsi.adaptive.api.controller.exception.NotFoundException;
 import com.rsi.adaptive.api.view.NextItem;
 import com.rsi.adaptive.api.view.StudentRequestView;
+import com.rsi.adaptive.calc.exception.NotFoundException;
 
 /**
  * Created by suryadevarap on 2/6/19.

@@ -15,6 +15,7 @@ node("shared-jenkins"){
     def HOST_TO_RUN_THE_NOMAD_JOB_FROM = 'bastion'
     def SSL_PARAMS = ' -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  '
     def SSH_WITH_PARAMS = "ssh ${SSL_PARAMS} -l ec2-user"
+    def mvnHome = tool name: 'MAVEN_3_5_4', type: 'hudson.tasks.Maven$MavenInstallation'
 
 stage ('Checkout cae repo') {
       dir ('GITHUB_REPO_DIR') {
@@ -26,6 +27,7 @@ stage ('Checkout cae repo') {
 
 stage('Build docker container'){
 
+        sh "$mvnHome/bin/mvn clean install -Dmaven.test.skip=true"
         docker.withTool('docker'){
             def DOCKER_IMAGE_TAG = "${DOCKER_IMAGE}:${git_commit}"
             sh " cs builder build -d ./caeAPI/target -f ./caeAPI/target/classes/docker/Dockerfile -t ${DOCKER_IMAGE_TAG}"

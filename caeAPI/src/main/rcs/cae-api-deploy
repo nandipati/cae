@@ -26,7 +26,6 @@ stage ('Checkout cae repo') {
 
 stage('Build docker container'){
 
-        sh "$mvnHome/bin/mvn package"
         sh "$mvnHome/bin/mvn clean install -Dmaven.test.skip=true"
         docker.withTool('docker'){
             def DOCKER_IMAGE_TAG = "${DOCKER_IMAGE}:${git_commit}"

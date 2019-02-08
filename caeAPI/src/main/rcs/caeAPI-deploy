@@ -18,11 +18,10 @@ node("shared-jenkins"){
     def mvnHome = tool name: 'MAVEN_3_5_4', type: 'hudson.tasks.Maven$MavenInstallation'
 
 stage ('Checkout cae repo') {
-      dir ('GITHUB_REPO_DIR') {
+
         git branch: env.GITHUB_BRANCH, credentialsId: GITHUB_CREDENTIALS_ID, url: GITHUB_REPO
         sh "git rev-parse HEAD > commit"
         git_commit = readFile('commit').trim()
-      }
     }
 
 stage('Build docker container'){
@@ -39,11 +38,11 @@ stage('Deploy cae-api'){
 
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM}  mkdir -p ${NOMAD_JOBFILE_DIR}"
 
-                 sh "sed -i 's/TAG/${git_commit}/g'  ${NOMAD_JOBFILE_DIR}/nomadJobFile.nomad"
-                 sh "sed -i 's/TASK-STAGE/cae-api-${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/nomadJobFile.nomad"
-                 sh "sed -i 's/ENVIRONMENT/${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/nomadJobFile.nomad"
-                 sh " scp ${SSL_PARAMS}  ${NOMAD_JOBFILE_DIR}/nomadJobFile.nomad ec2-user@${HOST_TO_RUN_THE_NOMAD_JOB_FROM}:${NOMAD_JOBFILE_DIR} "
-                 sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM} cs run   ${NOMAD_JOBFILE_DIR}/nomadJobFile.nomad "
+                 sh "sed -i 's/TAG/${git_commit}/g'  ${NOMAD_JOBFILE_DIR}/${nomadJobFile}"
+                 sh "sed -i 's/TASK-STAGE/cae-api-${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/${nomadJobFile}"
+                 sh "sed -i 's/ENVIRONMENT/${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/${nomadJobFile}"
+                 sh " scp ${SSL_PARAMS}  ${NOMAD_JOBFILE_DIR}/${nomadJobFile} ec2-user@${HOST_TO_RUN_THE_NOMAD_JOB_FROM}:${NOMAD_JOBFILE_DIR} "
+                 sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM} cs run   ${NOMAD_JOBFILE_DIR}/${nomadJobFile} "
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM} rm -rf ${NOMAD_JOBFILE_DIR}"
         }
     }

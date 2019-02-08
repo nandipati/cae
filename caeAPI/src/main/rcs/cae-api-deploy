@@ -10,7 +10,7 @@ node("shared-jenkins"){
     def GITHUB_REPO = 'git@github.com:rsinsights/cae.git'
     def GITHUB_REPO_DIR = './cae'
     def git_commit = null
-    def NOMAD_JOBFILE_DIR = './caeAPI/src/main/rcs/nomad'
+    def NOMAD_JOBFILE_DIR = './caeAPI/src/main/resources/nomad'
     def nomadJobFile = "${env.NOMAD_FILE}.nomad"
     def HOST_TO_RUN_THE_NOMAD_JOB_FROM = 'bastion'
     def SSL_PARAMS = ' -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null  '
@@ -39,7 +39,7 @@ stage('Deploy cae-api'){
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM}  mkdir -p ${NOMAD_JOBFILE_DIR}"
 
                  sh "sed -i 's/TAG/${git_commit}/g'  ${NOMAD_JOBFILE_DIR}/${nomadJobFile}"
-                 sh "sed -i 's/TASK-STAGE/cae-api-${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/${nomadJobFile}"
+
                  sh "sed -i 's/ENVIRONMENT/${env.Environment}/g'  ${NOMAD_JOBFILE_DIR}/${nomadJobFile}"
                  sh " scp ${SSL_PARAMS}  ${NOMAD_JOBFILE_DIR}/${nomadJobFile} ec2-user@${HOST_TO_RUN_THE_NOMAD_JOB_FROM}:${NOMAD_JOBFILE_DIR} "
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM} cs run   ${NOMAD_JOBFILE_DIR}/${nomadJobFile} "

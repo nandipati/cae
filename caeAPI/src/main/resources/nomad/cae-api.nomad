@@ -1,4 +1,4 @@
-job "caeAPI" {
+job "cae-api" {
 
   constraint {
     attribute = "${attr.kernel.name}"
@@ -37,7 +37,7 @@ job "caeAPI" {
       mode = "delay"
     }
 
-    task "TASK-STAGE" {
+    task "cae-api-ENVIRONMENT" {
       driver = "docker"
       config {
         image = "artifact-repo.service.rcsnp.rsiapps.internal:6070/rcs/adaptive/cae-api:TAG" //use consul template get the value of easycbm_git_sha and other from consul assuming jenkins put it in consul after the docker built and pushed
@@ -57,7 +57,7 @@ job "caeAPI" {
         max_file_size = 25
       }
       service {
-        name = "TASK-STAGE"       //replace name based on the env it is running
+        name = "cae-api-ENVIRONMENT"       //replace name based on the env it is running
         port = "http"
       }
       resources {

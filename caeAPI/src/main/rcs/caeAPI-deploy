@@ -28,7 +28,7 @@ stage('Build docker container'){
 
         docker.withTool('docker'){
             def DOCKER_IMAGE_TAG = "${DOCKER_IMAGE}:${git_commit}"
-            sh " cs builder build -d ./caeAPI/target -f ${env.DOCKER_PROJECT_DIRECTORY}/Dockerfile -t ${DOCKER_IMAGE_TAG}"
+            sh " cs builder build -d ./caeAPI/target -f ./caeAPI/target/classes/docker/Dockerfile -t ${DOCKER_IMAGE_TAG}"
         }
     }
 

@@ -32,12 +32,16 @@ add the following configuration in your local at ~/.m2/settings.xml
  urls of the artifactory in pom file [when building app locally]--
  
  http://artifact-repo.rcs.rsiapps.com/repository/maven-public/
+ 
  http://artifact-repo.rcs.rsiapps.com/repository/maven-releases/
+ 
  http://artifact-repo.rcs.rsiapps.com/repository/maven-snapshots/
  
  urls of the artifactory in pom file [when building app in rcs cluster]--
  
  http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-public/
+ 
  http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-releases/
+ 
  http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-snapshots/
  

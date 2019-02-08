@@ -45,3 +45,8 @@ add the following configuration in your local at ~/.m2/settings.xml
  
  http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-snapshots/
  
+ 
+ jenkins job to deploy cae-api:
+ 
+ http://jenkins.rcsnp.rsiapps.com/job/cae-api-deploy/
+ 

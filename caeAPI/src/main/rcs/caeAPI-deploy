@@ -32,7 +32,7 @@ stage('Build docker container'){
         }
     }
 
-stage('deploy caeAPI'){
+stage('Deploy cae-api'){
         sshagent (credentials: [SSH_CREDENTIALS_ID]) {
 
                  sh "${SSH_WITH_PARAMS} ${HOST_TO_RUN_THE_NOMAD_JOB_FROM}  mkdir -p ${NOMAD_JOBFILE_DIR}"

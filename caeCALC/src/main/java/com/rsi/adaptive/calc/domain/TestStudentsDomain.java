@@ -12,13 +12,13 @@ import lombok.Data;
 @Data
 public class TestStudentsDomain extends AbstractDomain {
 
-  private String studentName;
+  public String studentName;
 
   @JsonProperty(value = "itemResponsesList", access = JsonProperty.Access.WRITE_ONLY)
-  private List<ItemResponsesDomain> itemResponsesList;
+  public List<ItemResponsesDomain> itemResponsesList;
 
-  private double MLE;
+  public double MLE;
 
-  private double SE;
+  public double SE;
 
 }

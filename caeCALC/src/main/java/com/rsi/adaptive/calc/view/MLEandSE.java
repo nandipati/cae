@@ -8,6 +8,6 @@ import lombok.Data;
 @Data
 public class MLEAndSE {
 
-  private double mle;
-  private double se;
+  public double mle;
+  public double se;
 }

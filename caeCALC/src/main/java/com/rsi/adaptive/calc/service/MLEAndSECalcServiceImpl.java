@@ -82,12 +82,12 @@ public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
     ItemResponseModel[] irmArray = new ItemResponseModel[numberOfItems];
 
     VariableName iName;
-    for(int i=0;i<numberOfItems;i++){
-      String name = "V"+i;
+    for(int variableNameSequence=0;variableNameSequence<numberOfItems;variableNameSequence++){
+      String name = "V"+variableNameSequence;
       iName = new VariableName(name);
 
-      irmArray[i] = new Irm3PL(disc[i], diff[i],  1.7);
-      irmArray[i].setName(iName);
+      irmArray[variableNameSequence] = new Irm3PL(disc[variableNameSequence], diff[variableNameSequence],  1.7);
+      irmArray[variableNameSequence].setName(iName);
     }
 
 

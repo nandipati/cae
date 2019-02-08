@@ -2,10 +2,13 @@ package com.rsi.adaptive.api.factory;
 
 import com.rsi.adaptive.calc.factory.ConsumerEnum;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by suryadevarap on 2/6/19.
  */
-public abstract class ItemSelectionFactory {
+@Component
+public class ItemSelectionFactory {
 
   public static ItemSelection getClient(String client){
 

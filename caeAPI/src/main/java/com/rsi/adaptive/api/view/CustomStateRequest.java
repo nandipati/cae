@@ -31,5 +31,5 @@ public class CustomStateRequest extends AbstractView {
    @JsonProperty("score_estimation")
    public List<ScoreEstimation> scoreEstimation;
    @JsonProperty("previous_items")
-   public List<PreviousItems> previousItems;
+   public List<PreviousItem> previousItems;
 }

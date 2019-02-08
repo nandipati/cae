@@ -4,7 +4,7 @@ import com.rsi.adaptive.api.view.AdaptiveActivity;
 import com.rsi.adaptive.api.view.CurrentItems;
 import com.rsi.adaptive.api.view.CustomStateRequest;
 import com.rsi.adaptive.api.view.InterimRanges;
-import com.rsi.adaptive.api.view.PreviousItems;
+import com.rsi.adaptive.api.view.PreviousItem;
 import com.rsi.adaptive.api.view.ScoreEstimation;
 import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.TestLength;
@@ -89,9 +89,9 @@ public class StudentRequestViewBuilder {
     return scoreEstimationList;
   }
 
-  private List<PreviousItems> createPreviousItems() {
-    List<PreviousItems> previousItemsList = new ArrayList<>();
-    PreviousItems previousItems = new PreviousItems();
+  private List<PreviousItem> createPreviousItems() {
+    List<PreviousItem> previousItemsList = new ArrayList<>();
+    PreviousItem previousItems = new PreviousItem();
     previousItems.setReference("item3");
     previousItems.setDiscriminator(1.183);
     previousItems.setDifficulty(0.848);

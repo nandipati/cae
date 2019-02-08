@@ -4,9 +4,8 @@ import com.rsi.adaptive.api.view.CurrentItems;
 import com.rsi.adaptive.api.view.CustomStateRequest;
 import com.rsi.adaptive.api.view.Estimations;
 import com.rsi.adaptive.api.view.InterimRanges;
-import com.rsi.adaptive.api.view.PreviousItems;
+import com.rsi.adaptive.api.view.PreviousItem;
 import com.rsi.adaptive.api.view.ScoreEstimation;
-import com.rsi.adaptive.api.view.StudentRequestView;
 import com.rsi.adaptive.api.view.TestLength;
 import com.rsi.adaptive.api.view.TestStudents;
 import com.rsi.adaptive.api.view.ThetaRange;
@@ -42,7 +41,7 @@ public class DomainMapperConfiguration {
     mapper.addDomainClassMapping( ScoreEstimation.class,ScoreEstimationDomain.class);
     mapper.addClassMapping( ThetaRangeDomain.class,ThetaRange.class);
     mapper.addClassMapping( TestLengthDomain.class,TestLength.class);
-    mapper.addClassMapping( PreviousItemsDomain.class,PreviousItems.class);
+    mapper.addClassMapping( PreviousItemsDomain.class,PreviousItem.class);
     mapper.addClassMapping( InterimRangesDomain.class,InterimRanges.class);
     return mapper;
   }

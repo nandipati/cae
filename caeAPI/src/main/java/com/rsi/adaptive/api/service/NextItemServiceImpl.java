@@ -28,6 +28,12 @@ public class NextItemServiceImpl implements NextItemService{
   @Autowired
   private CustomStateRequestDomainMapper customStateMapper;
 
+  @Autowired
+  private AbilityFactory abilityFactory;
+
+  @Autowired
+  private ItemSelectionFactory itemSelectionFactory;
+
   @Override
   public StudentResponseView getNextItem(StudentRequestView requestView, String consumer) {
 
@@ -36,18 +42,17 @@ public class NextItemServiceImpl implements NextItemService{
     StudentResponseView responseView = new StudentResponseView();
     CustomStateResponse customStateResponse = new CustomStateResponse();
 
-    AbilityEstimations abilityEstimations = AbilityFactory.getClient(consumer);
+    AbilityEstimations abilityEstimations = abilityFactory.getClient(consumer);
 
-    estimations = mapper.convert( abilityEstimations != null ?
-        abilityEstimations.getEstimations(mapper.convertDomain(requestView.getCurrentItems()),
-            customStateMapper.convert(requestView.getCustomState())) : null);
+    estimations = mapper.convert(abilityEstimations.getEstimations(mapper.convertDomain(requestView.getCurrentItems()),
+        customStateMapper.convert(requestView.getCustomState())));
 
-    customStateResponse.setEstimatedAbility(estimations);
-
-    ItemSelection itemSelection = ItemSelectionFactory.getClient(consumer);
-    nextItem = itemSelection != null ? itemSelection.getNextItem(estimations.getEstimatedAbility(), requestView) : null;
+    ItemSelection itemSelection = itemSelectionFactory.getClient(consumer);
+    nextItem = itemSelection.getNextItem(estimations.getEstimatedAbility(), requestView);
 
     responseView.setNextItem(nextItem);
+    estimations.setReference(nextItem.getReference());
+    customStateResponse.setEstimatedAbility(estimations);
     responseView.setCustomStateResponse(customStateResponse);
 
     return responseView;

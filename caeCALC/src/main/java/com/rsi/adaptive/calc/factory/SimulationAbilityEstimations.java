@@ -7,6 +7,7 @@ import com.rsi.adaptive.calc.domain.EstimationsDomain;
 import com.rsi.adaptive.calc.domain.ScoreEstimationDomain;
 import com.rsi.adaptive.calc.enums.EstimatedMethod;
 import com.rsi.adaptive.calc.service.MLEAndSECalcService;
+import com.rsi.adaptive.calc.service.MLEAndSECalcServiceImpl;
 import com.rsi.adaptive.calc.util.Grade;
 import com.rsi.adaptive.calc.view.MLEAndSE;
 import org.apache.commons.lang3.ArrayUtils;
@@ -25,12 +26,7 @@ import java.util.Optional;
 @Service
 public class SimulationAbilityEstimations implements AbilityEstimations {
 
-  private static MLEAndSECalcService calcService;
-
-  @Autowired
-  private void  setMleAndSECalcService(MLEAndSECalcService mleAndSECalcService){
-    calcService = mleAndSECalcService;
-  }
+  private MLEAndSECalcServiceImpl calcService = new MLEAndSECalcServiceImpl();
 
   @Override
   public EstimationsDomain getEstimations(List<CurrentItemsDomain> currentItemsList,
@@ -85,7 +81,7 @@ public class SimulationAbilityEstimations implements AbilityEstimations {
           estimationsDomain.setEstimatedAbility(ability);
         }else if (EstimatedMethod.MLE.equals(estimatedMethod)) {
           MLEAndSE mleAndSE = calcService
-              .getMLEAndSE(buildResponseVector(currentItemsList, 1), currentItemsList.size(), disc, diff,
+              .getMLEAndSE(buildResponseVectorPerStudent(currentItemsList), currentItemsList.size(), disc, diff,
                   customStateRequestDomain.getThetaRange().getMin(), customStateRequestDomain.getThetaRange().getMax());
 
           estimationsDomain.setEstimatedAbility(SloppyMath.round(mleAndSE.getMle(), 3));
@@ -103,15 +99,16 @@ public class SimulationAbilityEstimations implements AbilityEstimations {
     return estimationsDomain;
   }
 
-  private byte[][] buildResponseVector(List<CurrentItemsDomain> currentItemsList,int numberOfExamine){
+  private byte[][] buildResponseVectorPerStudent(List<CurrentItemsDomain> currentItemsList){
 
     byte[][] responseVector ;
+    int numberOfExamine =1;
     int numberOfItems = currentItemsList.size();
     responseVector = new byte[numberOfExamine][numberOfItems];
     int row=0;
     int j=0;
-    for (CurrentItemsDomain currentitems: currentItemsList){
-      responseVector[row][j] = Byte.parseByte(String.valueOf(currentitems.getScore()));
+    for (CurrentItemsDomain currentItems: currentItemsList){
+      responseVector[row][j] = Byte.parseByte(String.valueOf(currentItems.getScore()));
       j++;
     }
     return responseVector;

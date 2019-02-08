@@ -1,9 +1,12 @@
 package com.rsi.adaptive.calc.factory;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by suryadevarap on 2/6/19.
  */
-public abstract class AbilityFactory {
+@Component
+public class AbilityFactory {
 
   public static AbilityEstimations getClient(String client){
 

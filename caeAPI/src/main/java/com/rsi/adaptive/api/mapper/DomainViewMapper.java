@@ -14,8 +14,14 @@ public interface DomainViewMapper <D extends AbstractDomain, V extends AbstractV
 
   V convert(D domain);
 
+  D convert(V view);
+
   default List<V> convert(Collection<D> domains) {
     return domains.stream().map(this::convert).collect(Collectors.toList());
+  }
+
+  default List<D> convertView(Collection<V> views) {
+    return views.stream().map(this::convert).collect(Collectors.toList());
   }
 
   boolean supports(Class<? extends AbstractView> clazz);

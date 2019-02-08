@@ -11,7 +11,7 @@
     <distributionManagement>
         <snapshotRepository>
             <id>rsinsights-snapshots</id>
-            <name>Riverside Insights Snapshots Deployment Repoisitory</name>
+            <name>Riverside Insights Snapshots Deployment Repository</name>
             <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>

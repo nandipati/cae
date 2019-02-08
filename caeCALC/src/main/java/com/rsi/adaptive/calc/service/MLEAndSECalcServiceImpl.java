@@ -4,10 +4,13 @@ import com.itemanalysis.psychometrics.data.VariableName;
 import com.itemanalysis.psychometrics.irt.estimation.IrtExaminee;
 import com.itemanalysis.psychometrics.irt.model.Irm3PL;
 import com.itemanalysis.psychometrics.irt.model.ItemResponseModel;
+import com.itemanalysis.psychometrics.optimization.SloppyMath;
+
 import com.rsi.adaptive.calc.domain.TestStudentsDomain;
 import com.rsi.adaptive.calc.enums.ItemParameters;
+import com.rsi.adaptive.calc.view.MLEAndSE;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +18,8 @@ import java.util.List;
 /**
  * Created by suryadevarap on 1/7/19.
  */
-@Service
+@Component
 public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
-
 
   @Override
   public List<TestStudentsDomain> calculateMLEAndSEForAll(byte[][] responseVector) {
@@ -61,6 +63,52 @@ public class MLEAndSECalcServiceImpl implements MLEAndSECalcService {
     }
 
     return mleAndSEStudentsList;
+  }
+
+  @Override
+  public double calcEstimatedForNextItem(double[] IParam,double randomAbility,int itemResponse) {
+
+    Irm3PL model = new Irm3PL(IParam[0], IParam[1], 0, 1.0);
+    return SloppyMath.round(model.probability(randomAbility,IParam,itemResponse,1.0),3);
+
+  }
+
+  @Override
+  public MLEAndSE getMLEAndSE(byte[][] responseVector,int numberOfItems,double[] disc, double[] diff,
+      double thetaMin,double thetaMax) {
+
+    MLEAndSE mleAndSE = new MLEAndSE();
+
+    ItemResponseModel[] irmArray = new ItemResponseModel[numberOfItems];
+
+    VariableName iName;
+    for(int variableNameSequence=0;variableNameSequence<numberOfItems;variableNameSequence++){
+      String name = "V"+variableNameSequence;
+      iName = new VariableName(name);
+
+      irmArray[variableNameSequence] = new Irm3PL(disc[variableNameSequence], diff[variableNameSequence],  1.7);
+      irmArray[variableNameSequence].setName(iName);
+    }
+
+
+    IrtExaminee  iVec = new IrtExaminee(irmArray);
+
+    for (byte[] aResponseVector : responseVector) {
+      double mle;
+      double se;
+
+      iVec.setResponseVector(aResponseVector);
+
+      mle = iVec.maximumLikelihoodEstimate(thetaMin, thetaMax);
+      se = iVec.mleStandardErrorAt(mle);
+
+      mleAndSE.setMle(mle);
+      mleAndSE.setSe(se);
+    }
+
+
+
+    return mleAndSE;
   }
 
 }

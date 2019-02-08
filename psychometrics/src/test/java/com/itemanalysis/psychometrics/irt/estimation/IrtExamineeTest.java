@@ -43,7 +43,7 @@ public class IrtExamineeTest {
     }
 
     public void readMixedFormat(){
-        mixedFormatData = new byte[20][40];
+        mixedFormatData = new byte[20][42];
         try{
             File f = FileUtils.toFile(this.getClass().getResource("/testdata/mixed-format.txt"));
             BufferedReader br = new BufferedReader(new FileReader(f));
@@ -160,7 +160,7 @@ public class IrtExamineeTest {
             iVec.setResponseVector(lsat7[j]);
             map = iVec.mapEstimate(0.0, 1.0, -4.0, 4.0);
             se = iVec.mapStandardErrorAt(map);
-//            System.out.println("MAP" + j + ": " + map + " SE: " + se);
+            System.out.println("MAP" + j + ": " + map + " SE: " + se);
             assertEquals("  MAP Test" + j, trueMAP_LSAT7[j], map, 1e-4);
         }
 
@@ -532,7 +532,7 @@ public class IrtExamineeTest {
             0.62028276, 1.00758979, 0.58312897, 0.60219414, 0.66084336, 0.62989076, 0.70693752, 0.86574777,
             0.61312122, 0.56735134, 0.98809429, 0.53907226, 0.64132853, 0.67836688, 0.92011339, 0.83107679,
             0.87903698, 1.43258799, 0.44561383, 1.03101111, 1.6025383, 0.85904148, 1.55120193, 0.8282011
-//            ,0.97862369, 1.30034675 -- commented out for not including polytomous
+            ,0.97862369, 1.30034675
     };
 
     private double[] bParam_mixed = {

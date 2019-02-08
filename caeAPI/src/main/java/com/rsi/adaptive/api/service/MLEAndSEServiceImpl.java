@@ -1,6 +1,5 @@
 package com.rsi.adaptive.api.service;
 
-
 import com.rsi.adaptive.api.mapper.DomainMapper;
 import com.rsi.adaptive.api.view.TestStudentsResponseView;
 import com.rsi.adaptive.api.view.TestStudents;
@@ -44,7 +43,5 @@ public class MLEAndSEServiceImpl implements MLEAndSEService {
 
     return testStudentsResponseView;
   }
-
-
 
 }

@@ -40,7 +40,7 @@ job "caeAPI" {
     task "TASK-STAGE" {
       driver = "docker"
       config {
-        image = "artifact-repo.service.rcsnp.rsiapps.internal:6070/rcs/adaptive/cae-api:tag" //use consul template get the value of easycbm_git_sha and other from consul assuming jenkins put it in consul after the docker built and pushed
+        image = "artifact-repo.service.rcsnp.rsiapps.internal:6070/rcs/adaptive/cae-api:TAG" //use consul template get the value of easycbm_git_sha and other from consul assuming jenkins put it in consul after the docker built and pushed
         volumes = [
           # Used named volume created outside nomad.
           "/home/ec2-user/mnt/efs/rcs-app01/adaptive-ENVIRONMENT:/tmp:rw"

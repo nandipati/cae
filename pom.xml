@@ -6,25 +6,24 @@
 
     <groupId>com.engine</groupId>
     <artifactId>cae</artifactId>
-    <name>rsi-adaptive-engine</name>
     <packaging>pom</packaging>
     <version>0.1-SNAPSHOT</version>
     <distributionManagement>
         <snapshotRepository>
             <id>rsinsights-snapshots</id>
-            <name>Riverside Insights Snapshots Deployment Repository</name>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-snapshots/</url>
+            <name>Riverside Insights Snapshots Deployment Repoisitory</name>
+            <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-snapshots/</url>
         </snapshotRepository>
         <repository>
             <id>rsinsights-releases</id>
             <name>Riverside Insights  Release Deployment Repository</name>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-releases/</url>
+            <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
     <repositories>
         <repository>
             <id>rsinsights</id>
-            <url>http://artifact-repo.cnd.hmheng.io/repository/maven-public/</url>
+            <url>http://artifact-repo.service.rcsnp.rsiapps.internal/repository/maven-public/</url>
         </repository>
     </repositories>
 
@@ -42,12 +41,20 @@
     </modules>
 
     <properties>
+        <finalName>${project.artifactId}-${version}</finalName>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <start-class>com.rsi.adaptive.api.CAEApplication</start-class>
         <common.security.version>1.0.0-SNAPSHOT</common.security.version>
+
+        <java.xmx.mb>900</java.xmx.mb>
+        <java.xms.mb>512</java.xms.mb>
+        <nomad.resources.cpu>300</nomad.resources.cpu>
+        <nomad.resources.mem>1000</nomad.resources.mem>
+        <nomad.resources.disk>500</nomad.resources.disk>
         <spring-cloud-starter-config.version>2.1.0.RELEASE</spring-cloud-starter-config.version>
+
      </properties>
     <dependencies>
         <dependency>
@@ -66,16 +73,11 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.vaadin.external.google</groupId>
-                    <artifactId>android-json</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.springframework.restdocs</groupId>
@@ -87,12 +89,19 @@
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
         </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
     </dependencies>
     <build>
+        <finalName>${finalName}</finalName>
+        <resources>
+            <resource>
+                <directory>${basedir}/src/main/resources/</directory>
+                <filtering>true</filtering>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/rcs/</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>

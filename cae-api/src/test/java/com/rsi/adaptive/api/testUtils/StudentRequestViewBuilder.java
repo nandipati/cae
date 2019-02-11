@@ -27,7 +27,7 @@ public class StudentRequestViewBuilder {
 
   public StudentRequestViewBuilder withAll(){
 
-    return this
+    return this.withSessionId("E439F6D7-15E4-4EBF-912F-EAA7CDB8171B")
                 .withAdaptiveActivity(createAdaptiveActivity())
                 .withCurrentItems(createCurrentItems())
                 .withCustomState(createCustomState());

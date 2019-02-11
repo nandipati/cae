@@ -10,7 +10,7 @@ import lombok.Data;
  * Created by suryadevarap on 1/29/19.
  */
 @Data
-public class CustomStateRequest extends CustomState {
+public class CustomStateRequest extends AbstractView {
 
    private String grade;
    private String subject;

@@ -67,7 +67,7 @@ job "cae-api" {
         network {
           mbits = 100
           port "http" {
-            static = "80"
+            static = "8080"
           }
         }
       }

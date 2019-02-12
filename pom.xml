@@ -36,8 +36,8 @@
 
     <modules>
         <module>psychometrics</module>
-        <module>caeAPI</module>
-        <module>caeCALC</module>
+        <module>cae-api</module>
+        <module>cae-calc</module>
     </modules>
 
     <properties>

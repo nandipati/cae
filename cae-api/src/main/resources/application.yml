@@ -3,13 +3,3 @@ server:
   port: 8080
 management:
   port: 9001
----
-rsisecurity:
-  enabled: true
-  audience: http://www.rsi.com
-  issuer: https://identity.api.rsi.com
-  csrfEnabled: false
-  sharedSecret: a5b7RFA/liU/0JNu6n0SWN9kxa9Iop3r0j1Ik+6EScLfMfPEOgNxhk/ig1+h1rmJbiqsD9OWqHRdtsLWpr6A0Fw6xPXZiooAP4cRhHurAcrmvjHTizw3jMxx1E2NZ0wz3YQOqnnc2jGqpMrtnBWrf1mJLnul9is2wZYLf1tl/ks=
-  clientStore:
-    # Test ClientID
-    AK1WAio16Abn9-B.rsi.com: ANH_vt05J0f8U5NqI6U9qeJonTKv0O14_WifCibjY81AmT2T4
